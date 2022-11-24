@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
@@ -6,6 +7,10 @@ const Modal = ({ courseDetails }) => {
 
     //Import Auth Context
     const { user } = useContext(AuthContext)
+
+    //Date
+    const date = new Date()
+    const formateDate = format(date, 'PP');
 
     //Distructure Property
     const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = courseDetails;
@@ -27,7 +32,8 @@ const Modal = ({ courseDetails }) => {
             customerEmail,
             furniturePrice,
             phoneNumber,
-            meetingLocation
+            meetingLocation,
+            date: formateDate
         }
         fetch('http://localhost:5000/bookingdata', {
             method: 'POST',

@@ -3,25 +3,24 @@ import { useDropzone } from 'react-dropzone';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-import placeholder from '../../assets/imageplaceholder/placeholder2.png'
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import { format } from 'date-fns';
 
 const Registration = () => {
 
     //Import Auth Context
-    const { createUser, updateUserProfile, googleProviderLogin, logOut } = useContext(AuthContext)
+    const { createUser, updateUserProfile, googleProviderLogin } = useContext(AuthContext)
 
     //Store Name, Location, Email, ProfileType And Image for Database
-    const [name, setName] = useState(null);
-    const [location, setLocation] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [profileType, setProfileType] = useState(null);
     const [image, setImage] = useState(null)
 
     //Navigate and Location
     const navigate = useNavigate()
 
+    //Date
+    const date = new Date();
+    const formateDate = format(date, 'PP')
 
     //Form handle Functions
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -56,10 +55,24 @@ const Registration = () => {
         const userInfo = {
             name: name,
             email: email,
+            date: formateDate,
             location: location,
             image: image,
             role: profileType
         }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.acknowledged) {
+                toast.success("User Created Successfully")
+            }
+        })
         navigate('/')
 
     }
