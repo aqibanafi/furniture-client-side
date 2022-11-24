@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
-const useAdmin = email => {
+const useSeller = email => {
     const [isSeller, setIsSeller] = useState(false);
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://doctors-portal-server-rust.vercel.app/users/admin/${email}`)
+            fetch(`http://localhost:5000/users/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -17,4 +17,4 @@ const useAdmin = email => {
     return [isSeller, isSellerLoading]
 }
 
-export default useAdmin;
+export default useSeller;

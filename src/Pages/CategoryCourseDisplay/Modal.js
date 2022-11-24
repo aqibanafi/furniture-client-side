@@ -31,6 +31,7 @@ const Modal = ({ courseDetails }) => {
             customerName,
             customerEmail,
             furniturePrice,
+            picture,
             phoneNumber,
             meetingLocation,
             date: formateDate
@@ -42,12 +43,12 @@ const Modal = ({ courseDetails }) => {
             },
             body: JSON.stringify(booking)
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged) {
-                toast.success("Your Booking is Received")
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("Your Booking is Received")
+                }
+            })
 
     }
 
@@ -56,6 +57,7 @@ const Modal = ({ courseDetails }) => {
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form onSubmit={handleBooking}>
                         <h3 className="font-bold text-lg mb-5 text-center">Booking: {name}</h3>
                         <div className='w-full mb-2'>

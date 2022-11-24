@@ -4,7 +4,7 @@ import './Category.css'
 
 const CategoriesDisplay = ({ categoryItem }) => {
 
-    const { name, image, icon, _id } = categoryItem;
+    const { name, image, icon, _id} = categoryItem;
 
     return (
         <div>

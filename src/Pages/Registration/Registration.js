@@ -18,9 +18,6 @@ const Registration = () => {
     //Navigate and Location
     const navigate = useNavigate()
     
-    //Location
-    const [googleLocation, setGoogleLocation] = useState(null)
-
     //Date
     const date = new Date();
     const formateDate = format(date, 'PP')
