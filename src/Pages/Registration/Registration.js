@@ -155,7 +155,7 @@ const Registration = () => {
                         <input {...register("password", { required: true })} type="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
-                    <div>
+                    <div className='w-full mb-5'>
                         <label className="block text-sm mb-1">Account Type</label>
                         <select {...register("profileType", { required: true })} className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400">
                             <option selected>Buyer</option>
@@ -163,7 +163,8 @@ const Registration = () => {
                         </select>
                     </div>
                     <div>
-                        <input {...register("image", { required: true })} type="file" />
+                        <label className="block text-sm mb-2">Upload Image</label>
+                        <input {...register("image", { required: true })} type="file"/>
                     </div>
                     <div className='mt-10 flex justify-center'>
                         <input className='bg-accent text-primary font-bold px-20 py-4 btn hover:bg-gray-600 hover:text-white' type="submit" />
