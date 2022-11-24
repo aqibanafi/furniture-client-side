@@ -10,7 +10,7 @@ const DashboardLayout = () => {
                 <h1 className='text-3xl text-center font-bold'>User Dashboard</h1>
             </div>
             <div>
-                <div className='grid grid-cols-12 gap-10 mt-10'>
+                <div className='grid grid-cols-12 gap-10 mt-20'>
                     <div className='col-span-2'>
                         <DashbaordLeftBar></DashbaordLeftBar>
                     </div>

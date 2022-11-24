@@ -14,7 +14,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useBuyer from '../../hooks/useBuyer';
 import useSeller from '../../hooks/useSeller';
-import myproduct from '../../assets/icons/myproducts.png'
+import myproduct from '../../assets/icons/myproducts.png';
 
 const DashbaordLeftBar = () => {
 
@@ -34,8 +34,8 @@ const DashbaordLeftBar = () => {
             {
                 isAdmin &&
                 <>
-                    <Link><img className='w-10' src={buyer} alt="" /></Link>
-                    <Link><img className='w-10' src={seller} alt="" /></Link>
+                    <Link to='/dashbaord/allbuyers/'><img className='w-10' src={buyer} alt="" /></Link>
+                    <Link to='/dashbaord/allsellers/'><img className='w-10' src={seller} alt="" /></Link>
                     <Link><img className='w-10' src={report} alt="" /></Link>
                 </>
             }
@@ -50,7 +50,7 @@ const DashbaordLeftBar = () => {
                 isSeller &&
                 <>
                     <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
-                    <Link><img className='w-10' src={myproduct} title='My Products' alt="" /></Link>
+                    <Link to='/dashbaord/myproducts'><img className='w-10' src={myproduct} title='My Products' alt="" /></Link>
                 </>
             }
         </div>

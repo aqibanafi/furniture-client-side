@@ -1,11 +1,15 @@
 import { format } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
 
     const [image, setImage] = useState(null)
+
+    //Import Auth
+    const {user} = useContext(AuthContext);
 
     //Date
     const date = new Date();
@@ -40,7 +44,8 @@ const AddProduct = () => {
             originalPrice: orginalPrice,
             yearOfUse: data.yearOfUse,
             postTime: formateDate,
-            sellersName: sellerName
+            sellersName: sellerName,
+            email: user?.email
         }
         console.log(addProduct)
 
