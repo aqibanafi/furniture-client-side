@@ -15,6 +15,7 @@ const CategoryCourseDisplay = ({courseDetails}) => {
             <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
             <p>Seller Name: <span className='font-semibold'>{sellersName}</span></p>
+            <label htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
         </div>
     );
 };
