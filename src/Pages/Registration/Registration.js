@@ -17,6 +17,9 @@ const Registration = () => {
 
     //Navigate and Location
     const navigate = useNavigate()
+    
+    //Location
+    const [googleLocation, setGoogleLocation] = useState(null)
 
     //Date
     const date = new Date();
@@ -42,7 +45,7 @@ const Registration = () => {
             body: formData,
         })
             .then(res => res.json())
-            .then(data => setImage(data.data.display_url))
+            .then(data => setImage(data.data.url))
 
         //Create User
         createUser(email, password)
@@ -83,9 +86,31 @@ const Registration = () => {
     const handleGoogleSignUp = () => {
         googleProviderLogin(googleProvider)
             .then(result => {
+               
                 toast.success("You Have Successfully Logged in")
                 const user = result.user;
                 console.log(user);
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    date: formateDate,
+                    image: image,
+                    role: 'buyer'
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userInfo)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.acknowledged) {
+                        toast.success("User Created Successfully")
+                    }
+                })
+                
             })
             .catch(error => {
                 console.error(error)
