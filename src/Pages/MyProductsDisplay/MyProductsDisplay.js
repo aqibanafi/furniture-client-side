@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Taka from '../../assets/icons/taka.png'
 
 const MyProductsDisplay = ({ products }) => {
 
     //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = products;
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = products;
 
+    
     return (
         <div className='shadow-xl p-10 rounded-lg bg-accent w-[400px]'>
             <img className='w-80 mb-5 rounded-xl' src={picture} alt="" />
@@ -20,7 +22,7 @@ const MyProductsDisplay = ({ products }) => {
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
             <p>Seller Name: <span className='font-semibold'>{sellersName}</span></p>
             <div className='flex gap-10 mt-10'>
-                <button className="btn btn-active">Edit</button>
+                <Link to='/dashbaord/editproduct/'><button className="btn btn-active">Edit</button></Link>
                 <button className="btn btn-success">Advertise</button>
                 <button className="btn btn-error">Delete</button>
 

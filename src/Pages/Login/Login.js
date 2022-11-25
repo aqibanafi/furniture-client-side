@@ -79,7 +79,6 @@ const Login = () => {
                     <hr className="w-full dark:text-gray-400" />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
-
                     <div className='w-full mb-5'>
                         <label for="email" className="block text-sm mb-1">Email address</label>
                         <input {...register("email", { required: true })} type="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
@@ -96,7 +95,6 @@ const Login = () => {
                     <div className='mt-10 flex justify-center'>
                         <input className='bg-accent text-primary font-bold px-20 py-4' type="submit" />
                     </div>
-
                 </form>
             </div>
         </div>

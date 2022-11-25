@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import EditProduct from '../EditProduct/EditProduct';
 import MyProductsDisplay from '../MyProductsDisplay/MyProductsDisplay';
 
 const MyProducts = () => {
