@@ -17,7 +17,6 @@ const EditProfileDisplay = ({ product }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const name = data.productname;
-        const email = data.email;
         const location = data.location;
         const resealablePrice = data.resealablePrice;
         const originalPrice = data.originalPrice;
