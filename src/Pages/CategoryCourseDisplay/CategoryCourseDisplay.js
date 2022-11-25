@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Taka from '../../assets/icons/taka.png'
 import { FaHeart } from 'react-icons/fa';
 import { FaFlag } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+
+
 
 const CategoryCourseDisplay = ({ courseDetails }) => {
+    //Distructure Property
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = courseDetails;
+
+    //Import User 
+    const { user } = useContext(AuthContext);
+    const email = user?.email;
 
     let count = 0;
     //Color of Wishlist
     const [wishlistColor, setWishListColor] = useState(' ')
     const [listButtonDisable, setListButtonDisable] = useState(false);
 
-    
+
     //Handle For Add to wish list
     const handleAddWishList = id => {
         setWishListColor('text-red-500')
@@ -20,16 +29,18 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             setListButtonDisable(true)
         }
         const wishList = {
-            name,
-            location,
-            resealablePrice,
-            originalPrice,
-            yearOfUse,
-            postTime,
-            sellersName
+            email: email,
+            name: name,
+            location: location,
+            resalePrice: resealablePrice,
+            orifinalPrice: originalPrice,
+            yearUse: yearOfUse,
+            postingTime: postTime,
+            sellerName: sellersName
         }
-        fetch(`http://localhost:5000/addtowishlist/${id}`, {
-            method: 'POST',
+
+        fetch(`http://localhost:5000/addtowishlist/${email}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -43,9 +54,6 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             })
     }
 
-
-    //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = courseDetails;
     return (
         <div className='shadow-xl p-10 rounded-lg bg-accent w-[400px]'>
             <img className='w-80 mb-5 rounded-xl' src={picture} alt="" />
@@ -54,7 +62,7 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
                     <p className='text-2xl font-semibold text-primary mb-5'>{name}</p>
                 </div>
                 <div className='flex items-center mb-3 gap-3'>
-                    <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable}><FaHeart className={`text-2xl ${wishlistColor}`} title='Add to Wishlist'></FaHeart></button>
+                    <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable} className='hover:text-red-500'><FaHeart className={`text-2xl ${wishlistColor}`} title='Add to Wishlist'></FaHeart></button>
                     <label htmlFor="flag-modal" className='hover:text-red-500 hover:cursor-pointer'><FaFlag title='Make Report' className='text-xl flex'></FaFlag></label>
                 </div>
             </div>
@@ -68,5 +76,5 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
         </div>
     );
 };
-<button></button>
+
 export default CategoryCourseDisplay;

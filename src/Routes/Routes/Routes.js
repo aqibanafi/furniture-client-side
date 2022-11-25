@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../layout/DashboardLayout/DashboardLayout";
 import Main from "../../layout/Main";
 import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
+import AllReports from "../../Pages/AllReports/AllReports";
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
 import AddProduct from "../../Pages/Dashbaord/AddProduct";
@@ -63,6 +64,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashbaord/mywishlist/',
                 element: <MyWishList></MyWishList>
+            },
+            {
+                path: '/dashbaord/reports/',
+                element: <AllReports></AllReports>
             }
         ]
     }

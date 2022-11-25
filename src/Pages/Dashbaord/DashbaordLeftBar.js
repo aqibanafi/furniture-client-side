@@ -36,7 +36,7 @@ const DashbaordLeftBar = () => {
                 <>
                     <Link to='/dashbaord/allbuyers/'><img className='w-10' src={buyer} alt="" /></Link>
                     <Link to='/dashbaord/allsellers/'><img className='w-10' src={seller} alt="" /></Link>
-                    <Link><img className='w-10' src={report} alt="" /></Link>
+                    <Link to='/reports'><img className='w-10' src={report} alt="" /></Link>
                 </>
             }
             {
