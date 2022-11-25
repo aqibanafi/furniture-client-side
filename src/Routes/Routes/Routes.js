@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../layout/DashboardLayout/DashboardLayout";
 import Main from "../../layout/Main";
 import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
+import AllProducts from "../../Pages/AllProducts/AllProducts";
 import AllReports from "../../Pages/AllReports/AllReports";
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
@@ -73,6 +74,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashbaord/editproduct/',
                 element: <EditProduct></EditProduct>
+            },
+            {
+                path: '/dashbaord/allproducts',
+                element: <AllProducts></AllProducts>
             }
         ]
     }

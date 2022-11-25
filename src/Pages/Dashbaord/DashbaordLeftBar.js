@@ -15,6 +15,7 @@ import useAdmin from '../../hooks/useAdmin';
 import useBuyer from '../../hooks/useBuyer';
 import useSeller from '../../hooks/useSeller';
 import myproduct from '../../assets/icons/myproducts.png';
+import allproducts from '../../assets/icons/allproducts.png';
 
 const DashbaordLeftBar = () => {
 
@@ -28,8 +29,6 @@ const DashbaordLeftBar = () => {
             <Link to='/'><img className='w-10' src={home} alt="" /></Link>
             <Link><img className='w-10' src={user} alt="" /></Link>
             <Link><img className='w-10' src={message} alt="" /></Link>
-            <Link><img className='w-10' src={settings} alt="" /></Link>
-            <Link><img className='w-10' src={help} alt="" /></Link>
 
             {
                 isAdmin &&
@@ -37,6 +36,8 @@ const DashbaordLeftBar = () => {
                     <Link to='/dashbaord/allbuyers/'><img className='w-10' src={buyer} alt="" /></Link>
                     <Link to='/dashbaord/allsellers/'><img className='w-10' src={seller} alt="" /></Link>
                     <Link to='/reports'><img className='w-10' src={report} alt="" /></Link>
+                    <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
+                    <Link to='/dashbaord/allproducts'><img className='w-12' src={allproducts} alt="" /></Link>
                 </>
             }
             {
@@ -49,12 +50,13 @@ const DashbaordLeftBar = () => {
             {
                 isSeller &&
                 <>
-                    <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
                     <Link to='/dashbaord/myproducts'><img className='w-10' src={myproduct} title='My Products' alt="" /></Link>
+                    <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
                 </>
             }
+            <Link><img className='w-10' src={settings} alt="" /></Link>
+            <Link><img className='w-10' src={help} alt="" /></Link>
         </div>
-
     return (
         <div>
             {menuOptions}

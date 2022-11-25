@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
@@ -15,6 +16,8 @@ const AddProduct = () => {
     const date = new Date();
     const formateDate = format(date, 'PP')
 
+    //Navigate
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const productName = data.productName;
@@ -47,7 +50,8 @@ const AddProduct = () => {
             postTime: formateDate,
             purchaseYear: yearOfPurchase,
             sellersName: sellerName,
-            email: user?.email
+            email: user?.email,
+            status: "Active"
         }
         console.log(addProduct)
 
@@ -62,6 +66,7 @@ const AddProduct = () => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success("Product Successfully Added!")
+                    navigate('/dashbaord/myproducts')
                 }
             })
 

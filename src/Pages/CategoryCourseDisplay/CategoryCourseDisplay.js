@@ -29,17 +29,18 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             setListButtonDisable(true)
         }
         const wishList = {
-            email: email,
+            picture: picture,
             name: name,
             location: location,
-            resalePrice: resealablePrice,
-            orifinalPrice: originalPrice,
-            yearUse: yearOfUse,
-            postingTime: postTime,
-            sellerName: sellersName
+            resealablePrice: resealablePrice,
+            originalPrice: originalPrice,
+            yearOfUse: yearOfUse,
+            postTime: postTime,
+            sellersName: sellersName,
+            email: user?.email,
         }
 
-        fetch(`http://localhost:5000/addtowishlist/${email}`, {
+        fetch(`http://localhost:5000/addnewproduct/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
