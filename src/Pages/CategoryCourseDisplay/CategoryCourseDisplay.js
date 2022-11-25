@@ -11,6 +11,7 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
     const [wishlistColor, setWishListColor] = useState(' ')
     const [listButtonDisable, setListButtonDisable] = useState(false);
 
+    
     //Handle For Add to wish list
     const handleAddWishList = id => {
         setWishListColor('text-red-500')
@@ -54,7 +55,7 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
                 </div>
                 <div className='flex items-center mb-3 gap-3'>
                     <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable}><FaHeart className={`text-2xl ${wishlistColor}`} title='Add to Wishlist'></FaHeart></button>
-                    <label htmlFor="flag-modal" className='btn'><FaFlag title='Make Report' className='text-xl flex text-red-400'></FaFlag></label>
+                    <label htmlFor="flag-modal" className='hover:text-red-500 hover:cursor-pointer'><FaFlag title='Make Report' className='text-xl flex'></FaFlag></label>
                 </div>
             </div>
             <p className='mb-1'>Location: <span className='font-semibold'>{location}</span></p>
@@ -67,5 +68,5 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
         </div>
     );
 };
-
+<button></button>
 export default CategoryCourseDisplay;
