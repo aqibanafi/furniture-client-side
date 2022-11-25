@@ -25,6 +25,7 @@ const AddProduct = () => {
         const location = data.location;
         const sellerName = data.sellerName;
         const description = data.description;
+        const yearOfPurchase = data.purchaseYear;
         const formData = new FormData()
         formData.append('image', data.image[0])
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
@@ -44,6 +45,7 @@ const AddProduct = () => {
             originalPrice: orginalPrice,
             yearOfUse: data.yearOfUse,
             postTime: formateDate,
+            purchaseYear: yearOfPurchase,
             sellersName: sellerName,
             email: user?.email
         }
@@ -125,6 +127,11 @@ const AddProduct = () => {
                     <div className='w-full mb-8'>
                         <label className="block text-sm mb-2">Location</label>
                         <input {...register("location", { required: true })} type="text" placeholder="Dhaka" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                        {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                    </div>
+                    <div className='w-full mb-8'>
+                        <label className="block text-sm mb-2">Purchase Year</label>
+                        <input {...register("purchaseYear", { required: true })} type="text" placeholder="2022" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
                     <div className='w-full mb-8'>

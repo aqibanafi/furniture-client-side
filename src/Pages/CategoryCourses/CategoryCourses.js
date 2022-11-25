@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import CategoryCourseDisplay from '../CategoryCourseDisplay/CategoryCourseDisplay';
+import FlagModal from '../CategoryCourseDisplay/FlagModal';
 import Modal from '../CategoryCourseDisplay/Modal';
 
 const CategoryCourses = () => {
@@ -20,6 +21,9 @@ const CategoryCourses = () => {
             </div>
                 {
                     data.map(courseInfo => <Modal courseDetails={courseInfo}></Modal>)
+                }
+                {
+                    data.map(courseInfo => <FlagModal courseDetails={courseInfo}></FlagModal>)
                 }
         </div>
     );

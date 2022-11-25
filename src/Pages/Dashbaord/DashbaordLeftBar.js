@@ -43,7 +43,7 @@ const DashbaordLeftBar = () => {
                 isBuyer &&
                 <>
                     <Link to='/dashbaord/myorders/'><img className='w-10' src={checkout} title='My Orders' alt="" /></Link>
-                    <Link><img className='w-10' src={wishlist} title='My Wishlist' alt="" /></Link>
+                    <Link to='/dashbaord/mywishlist/'><img className='w-10' src={wishlist} title='My Wishlist' alt="" /></Link>
                 </>
             }
             {

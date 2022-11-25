@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Taka from '../../assets/icons/taka.png'
 import { FaHeart } from 'react-icons/fa';
+import { FaFlag } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const CategoryCourseDisplay = ({ courseDetails }) => {
@@ -14,7 +15,7 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
     const handleAddWishList = id => {
         setWishListColor('text-red-500')
         count++;
-        if(count > 0) {
+        if (count > 0) {
             setListButtonDisable(true)
         }
         const wishList = {
@@ -41,14 +42,20 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             })
     }
 
+
     //Distructure Property
     const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = courseDetails;
     return (
         <div className='shadow-xl p-10 rounded-lg bg-accent w-[400px]'>
             <img className='w-80 mb-5 rounded-xl' src={picture} alt="" />
-            <div className='flex justify-between'>
-                <p className='text-2xl font-semibold text-primary mb-5'>{name}</p>
-                <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable}><FaHeart className={`text-2xl ${wishlistColor}`}></FaHeart></button>
+            <div className='flex justify-between items-center'>
+                <div>
+                    <p className='text-2xl font-semibold text-primary mb-5'>{name}</p>
+                </div>
+                <div className='flex items-center mb-3 gap-3'>
+                    <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable}><FaHeart className={`text-2xl ${wishlistColor}`} title='Add to Wishlist'></FaHeart></button>
+                    <label htmlFor="flag-modal" className='btn'><FaFlag title='Make Report' className='text-xl flex text-red-400'></FaFlag></label>
+                </div>
             </div>
             <p className='mb-1'>Location: <span className='font-semibold'>{location}</span></p>
             <p className='flex mb-1'>Resale Price: <span className='flex items-center ml-2 font-semibold'>{resealablePrice} <img className='w-5 h-5' src={Taka} alt="" /></span></p>
