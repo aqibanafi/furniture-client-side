@@ -1,5 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -7,10 +8,8 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
 
-    const [image, setImage] = useState(null)
-
     //Import Auth
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     //Date
     const date = new Date();
@@ -19,6 +18,18 @@ const AddProduct = () => {
     //Navigate
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+
+    const { sellerData = [], refetch } = useQuery({
+        queryKey: ['sellersInfo'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
+            const sellerData = await res.json()
+            return sellerData;
+        }
+    })
+    refetch()
+    console.log(sellerData)
     const onSubmit = data => {
         const productName = data.productName;
         const resaleablePrice = data.resaleablePrice;
@@ -26,50 +37,51 @@ const AddProduct = () => {
         const condition = data.condition;
         const phone = data.phone;
         const location = data.location;
-        const sellerName = data.sellerName;
+        const sellerName = user?.displayName;
         const description = data.description;
         const yearOfPurchase = data.purchaseYear;
         const formData = new FormData()
         formData.append('image', data.image[0])
+
+        
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
         fetch(url, {
             method: 'POST',
             body: formData,
         })
             .then(res => res.json())
-            .then(data => setImage(data.data.display_url))
-
-        const addProduct = {
-            category_id: data.category.split(' ')[1],
-            picture: image,
-            name: productName,
-            location: location,
-            resealablePrice: resaleablePrice,
-            originalPrice: orginalPrice,
-            yearOfUse: data.yearOfUse,
-            postTime: formateDate,
-            purchaseYear: yearOfPurchase,
-            sellersName: sellerName,
-            email: user?.email,
-            status: "Active"
-        }
-        console.log(addProduct)
-
-        fetch('http://localhost:5000/addnewproduct', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(addProduct)
-        })
-            .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    toast.success("Product Successfully Added!")
-                    navigate('/dashbaord/myproducts')
+                const addProduct = {
+                    category_id: data.category,
+                    picture: data.data.url,
+                    name: productName,
+                    location: location,
+                    resealablePrice: resaleablePrice,
+                    originalPrice: orginalPrice,
+                    yearOfUse: data.yearOfUse,
+                    postTime: formateDate,
+                    purchaseYear: data.yearOfPurchase,
+                    sellersName: sellerName,
+                    email: user?.email,
+                    status: "Active",
+                    verify: sellerData.verify
                 }
-            })
 
+                fetch('http://localhost:5000/addnewproduct', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(addProduct)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success("Product Successfully Added!")
+                            navigate('/dashbaord/myproducts')
+                        }
+                    })
+            })
     }
     return (
         <div>
@@ -121,12 +133,12 @@ const AddProduct = () => {
                     </div>
                     <div className='w-full mb-8'>
                         <label className="block text-sm mb-2">Seller Name</label>
-                        <input {...register("sellerName", { required: true })} type="text" placeholder="John Sina" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                        <input {...register("sellerName", { required: true })} type="text" value={user?.displayName} readOnly className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </div>
                     <div className='w-full mb-8'>
                         <label className="block text-sm mb-2">Year of Uses</label>
-                        <input {...register("yearOfUse", { required: true })} type="text" placeholder="John Sina" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                        <input {...register("yearOfUse", { required: true })} type="text" placeholder="2" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </div>
                     <div className='w-full mb-8'>

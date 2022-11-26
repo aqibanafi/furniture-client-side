@@ -4,7 +4,8 @@ import { FaHeart } from 'react-icons/fa';
 import { FaFlag } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-
+import Verified from '../../assets/icons/verified.png';
+import { useQuery } from '@tanstack/react-query';
 
 
 const CategoryCourseDisplay = ({ courseDetails }) => {
@@ -14,6 +15,16 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
     //Import User 
     const { user } = useContext(AuthContext);
     const email = user?.email;
+
+    const {data = [], refetch} = useQuery({
+        queryKey:['sellersInfo'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/seller/${email}`)
+            const data = await res.json()
+            console.log(data)
+            return data;
+        }
+    })
 
     let count = 0;
     //Color of Wishlist
@@ -72,7 +83,7 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             <p className='flex mb-1'>Original Price: <span className='flex items-center ml-2 font-semibold'>{originalPrice} <img className='w-5 h-5' src={Taka} alt="" /></span></p>
             <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
-            <p>Seller Name: <span className='font-semibold'>{sellersName}</span></p>
+            <p className='flex gap-2'>Seller: <span className='font-semibold flex gap-3'>{sellersName} {courseDetails.verify === "Verified" ? <div className='flex gap-1 items-center'><img className='w-5 h-5' src={Verified} alt="" /> <p>Seller Verified</p></div> : <p>Seller Not Verified</p>}</span></p>
             <label htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
         </div>
     );

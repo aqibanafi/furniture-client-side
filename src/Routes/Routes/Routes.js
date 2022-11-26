@@ -8,6 +8,7 @@ import AllSellers from "../../Pages/AllSellers/AllSellers";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
 import AddProduct from "../../Pages/Dashbaord/AddProduct";
 import EditProduct from "../../Pages/EditProduct/EditProduct";
+import Advertise from "../../Pages/Home/Advertise";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
@@ -32,6 +33,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/registration',
                 element: <Registration></Registration>
+            },
+            {
+                path: '/advertise',
+                element: <Advertise></Advertise>
             },
             {
                 path: '/categories/:id',
