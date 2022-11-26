@@ -16,7 +16,7 @@ const AllBuyers = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Buyers</h1>
+            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Buyers ({data.length})</h1>
            <div>
             {
                 data.map(buyers => <AllBuyersDisplay deleteProduct={deleteProduct} setDeleteProducts={setDeleteProducts} refetch={refetch} buyerInfo={buyers}></AllBuyersDisplay>)

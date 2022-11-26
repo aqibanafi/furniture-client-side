@@ -16,7 +16,7 @@ const AllProducts = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Products {data.length}</h1>
+            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Products ({data.length})</h1>
             <div>
                 {
                     data.map(product => <AllProductsDisplay product={product} refetch={refetch} deleteProduct={deleteProduct} setDeleteProducts={setDeleteProducts}></AllProductsDisplay>)

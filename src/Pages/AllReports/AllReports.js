@@ -13,7 +13,7 @@ const AllReports = () => {
     })
     return (
         <div>
-            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Sellers</h1>
+            <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Products Report ({data.length})</h1>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
@@ -30,25 +30,17 @@ const AllReports = () => {
                         {
                             data.map(report => <tr>
                                 <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={report.productName} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">{report.seller}</div>
-                                        </div>
-                                    </div>
+                                    {report.productName}
                                 </td>
                                 <td>
-                                    {report.productQuality}
+                                    {report.seller}
+                                </td>
+                                <td>
+                                    <p className={`${report.productQuality === "Excellent" && 'bg-green-600 text-center p-2 text-white'} ${report.productQuality === "Not Recommended" && "Bad" && 'bg-red-600 text-center p-2 text-white'} ${report.productQuality === "Good" && "Average" && 'bg-yellow-500 text-center p-2 text-white'}`}>{report.productQuality}</p>
                                     <br />
                                 </td>
                                 <td>{report.message}</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
-                                </th>
+                                
                             </tr>)
                         }
                     </tbody>

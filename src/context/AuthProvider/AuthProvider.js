@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../../firebase/firebase.config';
+import { useQuery } from '@tanstack/react-query';
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
-    
+
     //User and Loading
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -58,6 +59,16 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    //Get Product From Database
+    const { verifyData } = useQuery({
+        queryKey: ['seller'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
+            const data = await res.json()
+            return data;
+        }
+    })
+
     //Pass Data to all components
     const authInfo = {
         user,
@@ -68,8 +79,10 @@ const AuthProvider = ({ children }) => {
         signIn,
         updateUserProfile,
         logOut,
-        resetPassword
+        resetPassword,
+        verifyData
     };
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

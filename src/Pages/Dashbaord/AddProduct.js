@@ -9,7 +9,8 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 const AddProduct = () => {
 
     //Import Auth
-    const { user } = useContext(AuthContext);
+    const { user, verifyData } = useContext(AuthContext);
+    console.log(verifyData)
 
     //Date
     const date = new Date();
@@ -19,17 +20,6 @@ const AddProduct = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-
-    const { sellerData = [], refetch } = useQuery({
-        queryKey: ['sellersInfo'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
-            const sellerData = await res.json()
-            return sellerData;
-        }
-    })
-    refetch()
-    console.log(sellerData)
     const onSubmit = data => {
         const productName = data.productName;
         const resaleablePrice = data.resaleablePrice;
@@ -43,7 +33,7 @@ const AddProduct = () => {
         const formData = new FormData()
         formData.append('image', data.image[0])
 
-        
+
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
         fetch(url, {
             method: 'POST',
@@ -64,7 +54,7 @@ const AddProduct = () => {
                     sellersName: sellerName,
                     email: user?.email,
                     status: "Active",
-                    verify: sellerData.verify
+                    verify: verifyData
                 }
 
                 fetch('http://localhost:5000/addnewproduct', {
