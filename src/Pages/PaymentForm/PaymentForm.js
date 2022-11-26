@@ -10,8 +10,10 @@ const PaymentForm = () => {
     const data = useLoaderData()
     return (
         <div>
-            <h1>Payment For {data.bookingItem}</h1>
-            <p>Please Pay {data.furniturePrice}</p>
+            <div className='mb-10'>
+                <h1 className='text-center font-bold text-3xl text-primary mb-3'>Payment For {data.bookingItem}</h1>
+                <p className='font-bold text-lg text-center'>Please Pay <span className='text-green-600 text-xl ml-1'>{data.furniturePrice}</span></p>
+            </div>
             <div>
                 <Elements stripe={stripePromise}>
                     <CheckoutForm
