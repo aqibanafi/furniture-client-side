@@ -13,77 +13,90 @@ const Registration = () => {
     const { createUser, updateUserProfile, googleProviderLogin } = useContext(AuthContext)
 
     //Store Name, Location, Email, ProfileType And Image for Database
-    const [image, setImage] = useState(null)
+
 
     //Navigate and Location
     const navigate = useNavigate()
-    
+
     //Date
     const date = new Date();
     const formateDate = format(date, 'PP')
 
     //Form handle Functions
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [image, setImage] = useState()
     const onSubmit = data => {
-        const name = data.name;
+        const userName = data.name;
         const location = data.location;
         const email = data.email;
         const password = data.password;
         const profileType = data.profileType;
+        const appendimage = data.image[0];
+        const formData = new FormData()
+        formData.append('image', appendimage)
 
 
         //Use formData to Store Image into Image BB
-        const formData = new FormData()
-        formData.append('image', data.image[0])
-
+        // const formData = new FormData()
+        // formData.append('image', image)
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
         fetch(url, {
             method: 'POST',
             body: formData,
         })
             .then(res => res.json())
-            .then(data => setImage(data.data.url))
+            .then(data => {
+                //Create User
+                createUser(email, password)
+                    .then(result => {
+                        const user = result.user;
+                        console.log(user)
+                        handleUpdateUserProfile(userName, data.data.url)
+                    })
+                    .catch(error => console.error(error))
+                const userInfo = {
+                    name: userName,
+                    email: email,
+                    date: formateDate,
+                    location: location,
+                    image: data.data.url,
+                    role: profileType,
+                    verify: "Not Verified"
+                }
 
-        //Create User
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user)
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success("User Created Successfully")
+                        }
+                    })
             })
-            .catch(error => console.error(error))
-        handleUpdateUserProfile(name, image)
-        const userInfo = {
-            name: name,
-            email: email,
-            date: formateDate,
-            location: location,
-            image: image,
-            role: profileType
-        }
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged) {
-                toast.success("User Created Successfully")
+        //Handle Update User Profile 
+        const handleUpdateUserProfile = (name, photo) => {
+            const profile = {
+                displayName: name,
+                photoURL: photo
             }
-        })
-        navigate('/')
-
+            console.log(profile)
+            updateUserProfile(profile)
+                .then(() => { })
+                .catch(error => console.error(error))
+        }
     }
-
     //Handle Google Login
     const googleProvider = new GoogleAuthProvider()
 
     const handleGoogleSignUp = () => {
         googleProviderLogin(googleProvider)
             .then(result => {
-               
+
                 toast.success("You Have Successfully Logged in")
                 const user = result.user;
                 console.log(user);
@@ -101,13 +114,13 @@ const Registration = () => {
                     },
                     body: JSON.stringify(userInfo)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.acknowledged) {
-                        toast.success("User Created Successfully")
-                    }
-                })
-                
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success("User Created Successfully")
+                        }
+                    })
+
             })
             .catch(error => {
                 console.error(error)
@@ -115,40 +128,8 @@ const Registration = () => {
     }
 
 
-    //Handle Update User Profile 
-    const handleUpdateUserProfile = (name, photoURL) => {
-        const profile = {
-            displayName: name,
-            photoURL: photoURL
-        }
-        updateUserProfile(profile)
-            .then(() => { })
-            .catch(error => console.error(error))
-    }
 
-    //Image Placeholder and Show Image Preview 
-    const [files, setFiles] = useState([])
-    const { getRootProps, getInputProps } = useDropzone({
-        accept: "image/*",
-        onDrop: (acceptedFiles) => {
-            setFiles(
-                acceptedFiles.map((file) =>
-                    Object.assign(file, {
-                        preview: URL.createObjectURL(file),
-                    })
-                )
-            )
-        },
-    })
 
-    //Set Image Veriable to Store Image and Preview
-    const images = files.map((file) => (
-        <div key={file.name}>
-            <div>
-                <img src={file.preview} style={{ width: "200px" }} alt="preview" />
-            </div>
-        </div>
-    ))
     return (
         <div>
             <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
@@ -199,7 +180,7 @@ const Registration = () => {
                     </div>
                     <div>
                         <label className="block text-sm mb-2">Upload Image</label>
-                        <input {...register("image", { required: true })} type="file"/>
+                        <input {...register("image", { required: true })} type="file" />
                     </div>
                     <div className='mt-10 flex justify-center'>
                         <input className='bg-accent text-primary font-bold px-20 py-4 btn hover:bg-gray-600 hover:text-white' type="submit" />

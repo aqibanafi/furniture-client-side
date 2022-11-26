@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const MyOrdersDisplay = ({order}) => {
+const MyOrdersDisplay = ({ order }) => {
 
-    const {picture, bookingItem, furniturePrice} = order;
+    const { picture, bookingItem, furniturePrice, _id } = order;
     return (
         <div>
             <div className='shadow-xl p-10 w-[400px]'>
@@ -14,7 +15,7 @@ const MyOrdersDisplay = ({order}) => {
                     <p>Price: {furniturePrice}</p>
                 </div>
                 <div>
-                <button className="btn btn-primary w-full text-white font-bold mt-10">Pay Now</button>
+                    <Link to={`/dashbaord/payment/${_id}`}><button className="btn btn-primary w-full text-white font-bold mt-10">Pay Now</button></Link>
                 </div>
             </div>
         </div>

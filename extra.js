@@ -1,50 +1,32 @@
-//Handle Edit Products
-const handleEditProduct = event => {
-    event.preventDefault()
-    const form = event.target;
-
-    const name = form.productname.value;
-    const email = form.email.value;
-    const location = form.location.value;
-    const resealablePrice = form.resealablePrice.value;
-    const originalPrice = form.originalPrice.value;
-    const yearOfUse = form.yearOfUse.value;
-    const postTime = form.postTime.value;
-    const sellersName = form.sellersName.value;
-
-    const products = {
-        name,
-        email,
-        picture,
-        location,
-        resealablePrice,
-        originalPrice,
-        yearOfUse,
-        postTime,
-        sellersName
-    }
-    fetch(`http://localhost:5000/myproducts/${_id}`, {
-        method: 'PATCH',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(products)
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.acknowledged) {
-                toast.success("Product Successfully Edited")
-            }
+const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
+        fetch(url, {
+            method: 'POST',
+            body: formData,
         })
-}
+            .then(res => res.json())
+            .then(data => console.log(data))
 
 
-<form>
-    <input type="text" name='productname' defaultValue={name} className="input input-bordered w-full mb-5" />
-    <input type="text" name='location' defaultValue={location} className="input input-bordered w-full mb-5" />
-    <input type="text" name='resealablePrice' defaultValue={resealablePrice} className="input input-bordered w-full mb-5" />
-    <input type="text" name='originalPrice' defaultValue={originalPrice} className="input input-bordered w-full mb-5" />
-    <input type="text" name='yearOfUse' defaultValue={yearOfUse} className="input input-bordered w-full mb-5" />
-    <input type="text" name='postTime' defaultValue={postTime} className="input input-bordered w-full mb-5" />
-    <input type="text" name='sellersName' defaultValue={sellersName} className="input input-bordered w-full mb-5" />
-</form>
+             //Create User
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => console.error(error))
+    handleUpdateUserProfile(userName, image)
+
+
+    fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("User Created Successfully")
+                }
+            })

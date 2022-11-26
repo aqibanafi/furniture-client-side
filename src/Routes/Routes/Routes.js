@@ -13,6 +13,7 @@ import Login from "../../Pages/Login/Login";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyProducts from "../../Pages/MyProducts/MyProducts";
 import MyWishList from "../../Pages/MyWishList/MyWishList";
+import PaymentForm from "../../Pages/PaymentForm/PaymentForm";
 import Registration from "../../Pages/Registration/Registration";
 
 export const routes = createBrowserRouter([
@@ -78,6 +79,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashbaord/allproducts',
                 element: <AllProducts></AllProducts>
+            },
+            {
+                path: '/dashbaord/payment/:id',
+                element: <PaymentForm></PaymentForm>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     }
