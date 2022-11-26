@@ -25,13 +25,13 @@ const Header = () => {
 
     const menuItems =
         <>
-            <div className='flex gap-10'>
-                <Link to='/'><li>Home</li></Link>
-                <Link to='/blog'><li>Blog</li></Link>
-                <Link to='/contact'><li>Contact</li></Link>
+            <div className='grid grid-cols-1 lg:grid-cols-6 p-5 gap-10 font-bold'>
+                <Link to='/' className='hover:text-slate-400'><li>Home</li></Link>
+                <Link to='/blog' className='hover:text-slate-400'><li>Blog</li></Link>
+                <Link to='/contact' className='hover:text-slate-400'><li>Contact</li></Link>
                 {
                     user?.email &&
-                    <Link to='/dashbaord'><li>Dashbaord</li></Link>
+                    <Link to='/dashbaord' className='hover:text-slate-400'><li>Dashbaord</li></Link>
                 }
             </div>
         </>
@@ -72,7 +72,7 @@ const Header = () => {
                         {
                             user?.email &&
                             <div>
-                                <Link onClick={handleLogOut} className='btn btn-secondary'>Logout</Link>
+                                <Link onClick={handleLogOut} className='btn btn-secondary hover:bg-slate-600'>Logout</Link>
                             </div>
                         }
                     </div>

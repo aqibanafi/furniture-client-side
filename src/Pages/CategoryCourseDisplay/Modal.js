@@ -29,12 +29,12 @@ const Modal = ({ courseDetails }) => {
         const booking = {
             bookingItem,
             customerName,
-            customerEmail,
+            email: customerEmail,
             furniturePrice,
             picture,
             phoneNumber,
             meetingLocation,
-            date: formateDate
+            date: formateDate,
         }
         fetch('http://localhost:5000/bookingdata', {
             method: 'POST',

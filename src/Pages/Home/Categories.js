@@ -12,12 +12,14 @@ const Categories = () => {
         }
     })
     return (
-        <div>
-            <h1 className='text-2xl font-bold text-center'>CATEGORIES</h1>
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-10'>
-                {
-                    data.map(category => <CategoriesDisplay categoryItem={category}></CategoriesDisplay>)
-                }
+        <div className='mt-20'>
+            <h1 className='text-2xl font-bold text-center mb-10'>CATEGORIES</h1>
+            <div>
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-10'>
+                    {
+                        data.map(category => <CategoriesDisplay categoryItem={category}></CategoriesDisplay>)
+                    }
+                </div>
             </div>
         </div>
     );

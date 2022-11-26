@@ -1,13 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyOrdersDisplay from '../MyOrdersDisplay/MyOrdersDisplay';
 
 const MyOrders = () => {
 
+    const { user } = useContext(AuthContext);
+
     const { data = [] } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/myorders')
+            const res = await fetch(`http://localhost:5000/myorders/${user?.email}`)
             const data = await res.json()
             return data;
         }
@@ -15,7 +18,12 @@ const MyOrders = () => {
     return (
         <div>
             <div>
-                <h1 className='text-3xl text-center font-bold text-primary mb-20'>My Orders</h1>
+                <h1 className='text-3xl text-center font-bold text-primary mb-20'>My Orders ({data.length})</h1>
+            </div>
+            <div>
+                {
+                    data.length === 0 && <h1 className='text-xl text-center text-red-600 font-bold text-primary mb-20'>You did not make any order</h1>
+                }
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
                 {
