@@ -9,6 +9,7 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
 import AddProduct from "../../Pages/Dashbaord/AddProduct";
 import EditProduct from "../../Pages/EditProduct/EditProduct";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Advertise from "../../Pages/Home/Advertise";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -47,6 +48,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/*',
+                element: <ErrorPage></ErrorPage>
             }
         ]
     },
