@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import EditProfileDisplay from '../EditProfileDisplay/EditProfileDisplay';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const EditProduct = () => {
 
     const { user } = useContext(AuthContext)
 
-    const { data = [] } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myproducts/${user?.email}`)
@@ -15,6 +16,10 @@ const EditProduct = () => {
             return data;
         }
     })
+
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
 
     return (
         <div>

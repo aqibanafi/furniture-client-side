@@ -3,11 +3,16 @@ import { useLoaderData } from 'react-router-dom';
 import CategoryCourseDisplay from '../CategoryCourseDisplay/CategoryCourseDisplay';
 import FlagModal from '../CategoryCourseDisplay/FlagModal';
 import Modal from '../CategoryCourseDisplay/Modal';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const CategoryCourses = () => {
 
     //Data Load By Use Loader
     const data = useLoaderData()
+
+    if (!data) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
 
     return (
         <div className='mt-10 mb-10'>

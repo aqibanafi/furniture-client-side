@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Verified from '../../assets/icons/verified.png';
 import { useQuery } from '@tanstack/react-query';
+import { RevolvingDot } from 'react-loader-spinner'
 
 
 const CategoryCourseDisplay = ({ courseDetails }) => {
@@ -16,8 +17,8 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
     const { user } = useContext(AuthContext);
     const email = user?.email;
 
-    const {data = [], refetch} = useQuery({
-        queryKey:['sellersInfo'],
+    const { data = [], isLoading } = useQuery({
+        queryKey: ['sellersInfo'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/seller/${email}`)
             const data = await res.json()
@@ -25,6 +26,10 @@ const CategoryCourseDisplay = ({ courseDetails }) => {
             return data;
         }
     })
+
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
 
     let count = 0;
     //Color of Wishlist

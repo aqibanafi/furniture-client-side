@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import AllProductsDisplay from '../AllProductsDisplay/AllProductsDisplay';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const AllProducts = () => {
-    const { data = [], refetch } = useQuery({
+    const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['allProduct'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/allproducts')
@@ -13,6 +14,10 @@ const AllProducts = () => {
     })
 
     const [deleteProduct, setDeleteProducts] = useState(data)
+
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
 
     return (
         <div>

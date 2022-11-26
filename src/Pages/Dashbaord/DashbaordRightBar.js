@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const DashbaordRightBar = () => {
 
     //Import Auth Context
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
-    const { data = [], refetch } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['sellersInfo'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
@@ -16,7 +17,9 @@ const DashbaordRightBar = () => {
         }
     })
 
-
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
     return (
         <div className='bg-primary p-5'>
             <div className='mb-10'>

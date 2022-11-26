@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const AllReports = () => {
 
-    const { data = [] } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/reports')
@@ -11,6 +12,11 @@ const AllReports = () => {
             return data;
         }
     })
+
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
+
     return (
         <div>
             <h1 className='text-3xl font-bold text-primary mb-10 text-center'>All Products Report ({data.length})</h1>
@@ -40,7 +46,7 @@ const AllReports = () => {
                                     <br />
                                 </td>
                                 <td>{report.message}</td>
-                                
+
                             </tr>)
                         }
                     </tbody>

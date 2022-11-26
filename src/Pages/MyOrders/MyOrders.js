@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyOrdersDisplay from '../MyOrdersDisplay/MyOrdersDisplay';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const MyOrders = () => {
 
     const { user } = useContext(AuthContext);
 
-    const { data = [] } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myorders/${user?.email}`)
@@ -15,6 +16,10 @@ const MyOrders = () => {
             return data;
         }
     })
+
+    if (isLoading) {
+        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+    }
     return (
         <div>
             <div>
