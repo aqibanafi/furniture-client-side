@@ -5,6 +5,7 @@ import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
 import AllProducts from "../../Pages/AllProducts/AllProducts";
 import AllReports from "../../Pages/AllReports/AllReports";
 import AllSellers from "../../Pages/AllSellers/AllSellers";
+import Blogs from "../../Pages/Blogs/Blogs";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
 import AddProduct from "../../Pages/Dashbaord/AddProduct";
 import EditProduct from "../../Pages/EditProduct/EditProduct";
@@ -42,7 +43,11 @@ export const routes = createBrowserRouter([
                 path: '/categories/:id',
                 element: <CategoryCourses></CategoryCourses>,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
-            }, 
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
+            }
         ]
     },
     {

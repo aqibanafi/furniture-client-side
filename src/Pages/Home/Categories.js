@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import CategoriesDisplay from './CategoriesDisplay';
+import { RevolvingDot } from 'react-loader-spinner'
 
 const Categories = () => {
-    const { data = [] } = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['categoryList'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/categories/')
@@ -11,6 +12,13 @@ const Categories = () => {
             return data;
         }
     })
+
+    if (isLoading) {
+        if (isLoading) {
+            <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+        }
+    }
+
     return (
         <div className='mt-20'>
             <h1 className='text-2xl font-bold text-center mb-10'>CATEGORIES</h1>

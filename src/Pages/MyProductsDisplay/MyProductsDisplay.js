@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 import Taka from '../../assets/icons/taka.png'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { RevolvingDot } from 'react-loader-spinner';
 
 const MyProductsDisplay = ({ products }) => {
 
     const { user } = useContext(AuthContext);
 
-    const { data = [], refetch } = useQuery({
+    const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/myproducts/${user?.email}`)
@@ -18,6 +19,12 @@ const MyProductsDisplay = ({ products }) => {
             return data;
         }
     })
+
+    if (isLoading) {
+        if (isLoading) {
+            <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+        }
+    }
 
     const [deleteProduct, setDeleteProducts] = useState(data)
     //Distructure Property

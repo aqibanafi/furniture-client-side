@@ -27,7 +27,7 @@ const Header = () => {
         <>
             <div className='grid grid-cols-1 lg:grid-cols-6 p-5 gap-10 font-bold'>
                 <Link to='/' className='hover:text-slate-400'><li>Home</li></Link>
-                <Link to='/blog' className='hover:text-slate-400'><li>Blog</li></Link>
+                <Link to='/blogs' className='hover:text-slate-400'><li>Blog</li></Link>
                 <Link to='/contact' className='hover:text-slate-400'><li>Contact</li></Link>
                 {
                     user?.email &&
