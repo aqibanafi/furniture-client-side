@@ -1,32 +1,12 @@
-const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imagebb}`
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
+const { data = [], isLoading } = useQuery({
+    queryKey: ['sellersInfo'],
+    queryFn: async () => {
+        const res = await fetch(`http://localhost:5000/seller/${email}`)
+        const data = await res.json()
+        return data;
+    }
+})
 
-
-             //Create User
-        createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-        })
-        .catch(error => console.error(error))
-    handleUpdateUserProfile(userName, image)
-
-
-    fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    toast.success("User Created Successfully")
-                }
-            })
+if (isLoading) {
+    <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+}

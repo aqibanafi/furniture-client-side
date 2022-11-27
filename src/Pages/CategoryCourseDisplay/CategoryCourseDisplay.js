@@ -17,20 +17,6 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
     const { user } = useContext(AuthContext);
     const email = user?.email;
 
-    const { data = [], isLoading } = useQuery({
-        queryKey: ['sellersInfo'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seller/${email}`)
-            const data = await res.json()
-            console.log(data)
-            return data;
-        }
-    })
-
-    if (isLoading) {
-        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
-    }
-
     let count = 0;
     //Color of Wishlist
     const [wishlistColor, setWishListColor] = useState(' ')
@@ -38,7 +24,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
 
 
     //Handle For Add to wish list
-    const handleAddWishList = id => {
+    const handleAddWishList = () => {
         setWishListColor('text-red-500')
         count++;
         if (count > 0) {
@@ -56,7 +42,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             email: user?.email,
         }
 
-        fetch(`http://localhost:5000/addnewproduct/${email}`, {
+        fetch(`http://localhost:5000/addwishlist/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -70,7 +56,6 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
                 }
             })
     }
-
     return (
         <div className='shadow-xl p-10 rounded-lg bg-accent w-[400px]'>
             <img className='w-80 mb-5 rounded-xl' src={picture} alt="" />

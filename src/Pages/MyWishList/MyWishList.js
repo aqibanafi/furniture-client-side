@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyWishListDisplay from '../MyWishListDisplay/MyWishListDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import MyWishModal from './MyWishModal';
 
 const MyWishList = () => {
 
     const{user} = useContext(AuthContext)
+
+    const [myWishList, setMyWishList] = useState([])
 
     const {data = [], isLoading} = useQuery({
         queryKey: ['myWishList'],
@@ -31,8 +34,11 @@ const MyWishList = () => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
                 {
-                    data.map(wishList => <MyWishListDisplay wishList={wishList}></MyWishListDisplay>)
+                    data.map(wishList => <MyWishListDisplay setMyWishList={setMyWishList} wishList={wishList}></MyWishListDisplay>)
                 }
+            </div>
+            <div>
+                <MyWishModal myWishList={myWishList}></MyWishModal>
             </div>
         </div>
     );

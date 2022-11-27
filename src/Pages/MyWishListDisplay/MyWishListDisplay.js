@@ -1,7 +1,7 @@
 import React from 'react';
 import Taka from '../../assets/icons/taka.png'
 
-const MyWishListDisplay = ({ wishList }) => {
+const MyWishListDisplay = ({ wishList, setMyWishList }) => {
 
     //Distructure Property
     const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = wishList;
@@ -15,7 +15,7 @@ const MyWishListDisplay = ({ wishList }) => {
             <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
             <p>Seller Name: <span className='font-semibold'>{sellersName}</span></p>
-            <label htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
+            <label onClick={() => setMyWishList(wishList)} htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
         </div>
     );
 };

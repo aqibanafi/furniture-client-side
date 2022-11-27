@@ -25,8 +25,10 @@ const Home = () => {
             <Banner></Banner>
             <Categories></Categories>
             {
-                data.length &&
+                data.length ?
                 <Advertise></Advertise>
+                :
+                " "
             }
         </div>
     );
