@@ -66,15 +66,15 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: '/dashbaord/addproduct',
-                element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashbaord/myorders',
-                element: <MyOrders></MyOrders>
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
             {
                 path: '/dashbaord/myproducts',
-                element: <BuyerRoute><MyProducts></MyProducts></BuyerRoute>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashbaord/allbuyers',
@@ -102,7 +102,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashbaord/payment/:id',
-                element: <PaymentForm></PaymentForm>,
+                element: <SellerRoute><PaymentForm></PaymentForm></SellerRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {

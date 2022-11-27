@@ -30,12 +30,11 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                toast.success("Successfully Login")
                 const currentUser = {
                     email: user?.email
                 }
                 //Get JWT Token
-                fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

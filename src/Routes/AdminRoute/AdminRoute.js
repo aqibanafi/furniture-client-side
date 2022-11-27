@@ -5,7 +5,7 @@ import { RevolvingDot } from 'react-loader-spinner'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const AdminRoute = ({ children }) => {
-   const {user, loading} = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
