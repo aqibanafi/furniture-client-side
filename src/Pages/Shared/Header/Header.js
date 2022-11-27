@@ -50,7 +50,7 @@ const Header = () => {
                     </div>
 
 
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center gap-5 mr-10'>
                         <Link to='/'><img className='hidden lg:block' src={Logo} alt="" /></Link>
                         <Link to='/' className="text-primary font-bold text-xl">The Personal</Link>
                     </div>

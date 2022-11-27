@@ -19,7 +19,7 @@ const Message = () => {
                         <textarea id="message" type="text" placeholder="Message..." className="block w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 dark:bg-gray-800"></textarea>
                     </div>
                     <div>
-                        <button type="submit" className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 dark:bg-violet-400 focus:ring-violet-400 hover:ring-violet-400 dark:text-gray-900">Send</button>
+                        <button type="submit" className="w-full px-4 py-2 font-bold rounded shadow hover:bg-slate-600 hover:text-white bg-slate-300 dark:text-gray-900">Send</button>
                     </div>
                 </form>
             </section>

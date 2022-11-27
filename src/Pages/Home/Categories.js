@@ -18,12 +18,11 @@ const Categories = () => {
             <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
         }
     }
-
     return (
         <div className='mt-20'>
             <h1 className='text-2xl font-bold text-center mb-10'>CATEGORIES</h1>
             <div>
-                <div className='grid grid-cols-2 md:grid-cols-4 gap-10'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
                     {
                         data.map(category => <CategoriesDisplay categoryItem={category}></CategoriesDisplay>)
                     }

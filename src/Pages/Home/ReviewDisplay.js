@@ -50,7 +50,7 @@ export default function ReviewDisplay() {
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold mb-1">{review.ratingComment}</p>
                                     <p className="mb-1">{review.rating === 5 &&
-                                        <div className="flex gap-2">
+                                        <div className="flex gap-2 text-xs lg:text-base">
                                             <FaStar className="text-amber-400"></FaStar>
                                             <FaStar className="text-amber-400"></FaStar>
                                             <FaStar className="text-amber-400"></FaStar>
@@ -59,7 +59,7 @@ export default function ReviewDisplay() {
                                         </div>}
                                         {
                                             review.rating === 4 &&
-                                            <div className="flex gap-2">
+                                            <div className="flex gap-2 text-xs lg:text-base">
                                                 <FaStar className="text-amber-400"></FaStar>
                                                 <FaStar className="text-amber-400"></FaStar>
                                                 <FaStar className="text-amber-400"></FaStar>
@@ -68,7 +68,7 @@ export default function ReviewDisplay() {
                                         }
                                         {
                                             review.rating === 3 &&
-                                            <div className="flex gap-2">
+                                            <div className="flex gap-2 text-xs lg:text-base">
                                                 <FaStar className="text-amber-400"></FaStar>
                                                 <FaStar className="text-amber-400"></FaStar>
                                                 <FaStar className="text-amber-400"></FaStar>
@@ -76,14 +76,14 @@ export default function ReviewDisplay() {
                                         }
                                         {
                                             review.rating === 2 &&
-                                            <div className="flex gap-2">
+                                            <div className="flex gap-2 text-xs lg:text-base">
                                                 <FaStar className="text-amber-400"></FaStar>
                                                 <FaStar className="text-amber-400"></FaStar>
                                             </div>
                                         }
                                         {
                                             review.rating === 1 &&
-                                            <div className="flex gap-2">
+                                            <div className="flex gap-2 text-xs lg:text-base">
                                                 <FaStar className="text-amber-400"></FaStar>
                                             </div>
                                         }
