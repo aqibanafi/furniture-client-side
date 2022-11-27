@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
-const Modal = ({ productBooked }) => {
+const AdvertiseModal = ({ avdertiseProduct }) => {
 
     //Import Auth Context
     const { user } = useContext(AuthContext)
@@ -13,7 +13,7 @@ const Modal = ({ productBooked }) => {
     const formateDate = format(date, 'PP');
 
     //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = productBooked;
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = avdertiseProduct;
 
     //Handle Submit Button
     const handleBooking = event => {
@@ -60,6 +60,7 @@ const Modal = ({ productBooked }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form onSubmit={handleBooking}>
                         <h3 className="font-bold text-lg mb-5 text-center">Booking: {name}</h3>
+                        <p>{resealablePrice}</p>
                         <div className='w-full mb-2'>
                             <label className="block text-sm mb-1">Customer Name</label>
                             <input type="text" defaultValue={user?.displayName} readOnly className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
@@ -90,4 +91,4 @@ const Modal = ({ productBooked }) => {
     );
 };
 
-export default Modal;
+export default AdvertiseModal;

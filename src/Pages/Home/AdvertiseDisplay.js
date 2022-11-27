@@ -6,7 +6,7 @@ import { FaFlag } from 'react-icons/fa';
 import Taka from '../../assets/icons/taka.png'
 import Verified from '../../assets/icons/verified.png';
 
-const AdvertiseDisplay = ({ advertiseProduct }) => {
+const AdvertiseDisplay = ({ advertiseProduct, setAdvertiseProduct }) => {
 
     const {user} = useContext(AuthContext)
 
@@ -68,7 +68,7 @@ const AdvertiseDisplay = ({ advertiseProduct }) => {
                 <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
                 <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
                 <p className='flex gap-2'>Seller: <span className='font-semibold flex gap-3'>{sellersName} {advertiseProduct.verify === "Verified" ? <div className='flex gap-1 items-center'><img className='w-5 h-5' src={Verified} alt="" /> <p>Seller Verified</p></div> : <p>Seller Not Verified</p>}</span></p>
-                <label htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
+                <label onClick={() => setAdvertiseProduct(advertiseProduct)} htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
             </div>
         </div>
     );

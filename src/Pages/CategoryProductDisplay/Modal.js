@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
-const Modal = ({ productBooked }) => {
+const Modal = ({ productDetails }) => {
 
     //Import Auth Context
     const { user } = useContext(AuthContext)
@@ -13,7 +13,7 @@ const Modal = ({ productBooked }) => {
     const formateDate = format(date, 'PP');
 
     //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = productBooked;
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = productDetails;
 
     //Handle Submit Button
     const handleBooking = event => {

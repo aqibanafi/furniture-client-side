@@ -29,6 +29,7 @@ const AddProduct = () => {
         const sellerName = user?.displayName;
         const description = data.description;
         const yearOfPurchase = data.purchaseYear;
+        const category = data.productCategory;
         const formData = new FormData()
         formData.append('image', data.image[0])
 
@@ -41,21 +42,21 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(data => {
                 const addProduct = {
-                    category_id: data.category,
                     picture: data.data.url,
                     name: productName,
+                    category,
                     location: location,
                     resealablePrice: resaleablePrice,
                     originalPrice: orginalPrice,
                     yearOfUse: data.yearOfUse,
                     postTime: formateDate,
-                    purchaseYear: data.yearOfPurchase,
+                    purchaseYear: yearOfPurchase,
                     sellersName: sellerName,
                     email: user?.email,
                     status: "Active",
                     verify: verifyData
                 }
-
+                console.log(addProduct)
                 fetch('http://localhost:5000/addnewproduct', {
                     method: 'POST',
                     headers: {
@@ -83,6 +84,19 @@ const AddProduct = () => {
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div className='w-full mb-8'>
+                        <label className="block text-sm mb-2">Select Category</label>
+                        <select {...register("productCategory", { required: true })} className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400">
+                            <option selected>Select Category</option>
+                            <option>Cabinet</option>
+                            <option>Sofa</option>
+                            <option>Lamp</option>
+                            <option>Bed</option>
+                            <option>Accessories</option>
+                            <option>Chair</option>
+                            <option>Dressing Table</option>
+                        </select>
+                    </div>
+                    <div className='w-full mb-8'>
                         <label className="block text-sm mb-2">Resaleable Price</label>
                         <input {...register("resaleablePrice", { required: true })} type="text" placeholder="25,000" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
@@ -101,20 +115,7 @@ const AddProduct = () => {
                             <option>Fair</option>
                         </select>
                     </div>
-                    <div className='w-full mb-8'>
-                        <label className="block text-sm mb-2">Category</label>
-                        <select {...register("category", { required: true })} className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400">
-                            <option selected>Select Condition</option>
-                            <option>Cabinet 637ec057987c7fcbdd2421e9</option>
-                            <option>Table 637ec057987c7fcbdd2421ea</option>
-                            <option>Sofa 637ec057987c7fcbdd2421eb</option>
-                            <option>Lamp 637ec057987c7fcbdd2421ec</option>
-                            <option>Bed 637ec057987c7fcbdd2421ed</option>
-                            <option>Accessories 637ec057987c7fcbdd2421ee</option>
-                            <option>Chair 637ec057987c7fcbdd2421ef</option>
-                            <option>Dressing Table 637ec057987c7fcbdd2421f0</option>
-                        </select>
-                    </div>
+
                     <div className='w-full mb-8'>
                         <label className="block text-sm mb-2">Phone Number</label>
                         <input {...register("phone", { required: true })} type="text" placeholder="017******" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />

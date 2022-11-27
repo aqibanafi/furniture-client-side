@@ -9,9 +9,9 @@ import { useQuery } from '@tanstack/react-query';
 import { RevolvingDot } from 'react-loader-spinner'
 
 
-const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
+const CategoryProductDisplay = ({ productDetails }) => {
     //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = courseDetails;
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = productDetails;
 
     //Import User 
     const { user } = useContext(AuthContext);
@@ -88,10 +88,10 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             <p className='flex mb-1'>Original Price: <span className='flex items-center ml-2 font-semibold'>{originalPrice} <img className='w-5 h-5' src={Taka} alt="" /></span></p>
             <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
-            <p className='flex gap-2'>Seller: <span className='font-semibold flex gap-3'>{sellersName} {courseDetails.verify === "Verified" ? <div className='flex gap-1 items-center'><img className='w-5 h-5' src={Verified} alt="" /> <p>Seller Verified</p></div> : <p>Seller Not Verified</p>}</span></p>
-            <label onClick={() => setProductBooked(courseDetails)} htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
+            <p className='flex gap-2'>Seller: <span className='font-semibold flex gap-3'>{sellersName} {productDetails.verify === "Verified" ? <div className='flex gap-1 items-center'><img className='w-5 h-5' src={Verified} alt="" /> <p>Seller Verified</p></div> : <p>Seller Not Verified</p>}</span></p>
+            <label htmlFor="booking-modal" className="btn btn-primary w-full text-white mt-10">Book Now</label>
         </div>
     );
 };
 
-export default CategoryCourseDisplay;
+export default CategoryProductDisplay;

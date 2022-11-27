@@ -8,7 +8,7 @@ const CategoriesDisplay = ({ categoryItem }) => {
 
     return (
         <div>
-            <Link to={`/categories/${_id}`}>
+            <Link to={`/categories/${name}`}>
                 <div className='relative'>
                     <div className='carousel-img hover:scale-105 duration-500 ease-out'>
                         <img src={image} alt="" />
