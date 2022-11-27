@@ -58,17 +58,7 @@ const AuthProvider = ({ children }) => {
             unSubscribe()
         }
     }, [])
-
-    //Get Product From Database
-    const { verifyData } = useQuery({
-        queryKey: ['seller'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
-            const data = await res.json()
-            return data;
-        }
-    })
-
+    
     //Pass Data to all components
     const authInfo = {
         user,
@@ -80,7 +70,6 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         logOut,
         resetPassword,
-        verifyData
     };
 
     return (

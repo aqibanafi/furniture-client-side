@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Modal = ({ productBooked }) => {
@@ -8,12 +9,14 @@ const Modal = ({ productBooked }) => {
     //Import Auth Context
     const { user } = useContext(AuthContext)
 
+    const navigate = useNavigate()
+
     //Date
     const date = new Date()
     const formateDate = format(date, 'PP');
 
     //Distructure Property
-    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName } = productBooked;
+    const { name, picture, location, resealablePrice, originalPrice, yearOfUse, postTime, sellersName, _id } = productBooked;
 
     //Handle Submit Button
     const handleBooking = event => {
@@ -49,7 +52,6 @@ const Modal = ({ productBooked }) => {
                     toast.success("Your Booking is Received")
                 }
             })
-
     }
 
     return (

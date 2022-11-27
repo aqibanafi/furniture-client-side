@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,9 +9,16 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 const AddProduct = () => {
 
     //Import Auth
-    const { user, verifyData } = useContext(AuthContext);
-    console.log(verifyData)
+    const { user } = useContext(AuthContext);
 
+    const { data: userVerify } = useQuery({
+        queryKey:['userVerification'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
+            const data = await res.json()
+            return data;
+        }
+    })
     //Date
     const date = new Date();
     const formateDate = format(date, 'PP')
@@ -27,6 +35,7 @@ const AddProduct = () => {
         const phone = data.phone;
         const location = data.location;
         const sellerName = user?.displayName;
+        const verify = userVerify.verify;
         const description = data.description;
         const yearOfPurchase = data.purchaseYear;
         const category = data.productCategory;
@@ -52,9 +61,9 @@ const AddProduct = () => {
                     postTime: formateDate,
                     purchaseYear: yearOfPurchase,
                     sellersName: sellerName,
+                    verify,
                     email: user?.email,
                     status: "Active",
-                    verify: verifyData
                 }
                 console.log(addProduct)
                 fetch('http://localhost:5000/addnewproduct', {
