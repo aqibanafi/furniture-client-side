@@ -37,7 +37,7 @@ const Header = () => {
             </div>
         </>
     return (
-        <div>
+        <div className='mb-5'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">

@@ -42,7 +42,7 @@ export default function ReviewDisplay() {
             >
                 {
                     data.map(review =>
-                        <SwiperSlide className="bg-primary text-white p-8">
+                        <SwiperSlide className="bg-slate-700 text-white p-8">
                             <div className="flex flex-col items-center">
                                 <div className="mb-5">
                                     <img className="rounded-full w-20 h-20" src={review.image} alt="" />

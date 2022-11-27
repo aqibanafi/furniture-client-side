@@ -5,6 +5,7 @@ import Banner from './Banner';
 import Categories from './Categories';
 import { RevolvingDot } from 'react-loader-spinner';
 import ReviewDisplay from './ReviewDisplay';
+import LetsTalk from './LetsTalk';
 
 const Home = () => {
 
@@ -33,6 +34,9 @@ const Home = () => {
             }
             <div>
                 <ReviewDisplay></ReviewDisplay>
+            </div>
+            <div>
+                <LetsTalk></LetsTalk>
             </div>
         </div>
     );
