@@ -7,13 +7,13 @@ import MyWishModal from './MyWishModal';
 
 const MyWishList = () => {
 
-    const{user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const [myWishList, setMyWishList] = useState([])
 
-    const {data = [], isLoading} = useQuery({
+    const { data = [], isLoading } = useQuery({
         queryKey: ['myWishList'],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await fetch(`http://localhost:5000/wishlist/${user?.email}`)
             const data = await res.json()
             return data;
@@ -34,11 +34,11 @@ const MyWishList = () => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
                 {
-                    data.map(wishList => <MyWishListDisplay setMyWishList={setMyWishList} wishList={wishList}></MyWishListDisplay>)
+                    data.map(wishList => <MyWishListDisplay wishList={wishList} setMyWishList={setMyWishList}></MyWishListDisplay>)
                 }
             </div>
             <div>
-                <MyWishModal myWishList={myWishList}></MyWishModal>
+                <MyWishModal myWishList={myWishList} ></MyWishModal>
             </div>
         </div>
     );

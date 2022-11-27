@@ -27,8 +27,7 @@ const DashbaordLeftBar = () => {
     const menuOptions =
         <div className='bg-primary text-white flex flex-col gap-10 justify-center items-center p-10'>
             <Link to='/'><img className='w-10' src={home} alt="" /></Link>
-            <Link><img className='w-10' src={user} alt="" /></Link>
-            <Link><img className='w-10' src={message} alt="" /></Link>
+            <Link to='/dashbaord/message'><img className='w-10' src={message} alt="" /></Link>
 
             {
                 isAdmin &&

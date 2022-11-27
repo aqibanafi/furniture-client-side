@@ -15,10 +15,10 @@ const Home = () => {
             return data;
         }
     })
-    if(isLoading) {
+    if (isLoading) {
         return <div className='flex justify-center mt-40 mb-40'>
-        <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true}/>
-    </div>
+            <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
+        </div>
     }
     return (
         <div>
@@ -26,9 +26,9 @@ const Home = () => {
             <Categories></Categories>
             {
                 data.length ?
-                <Advertise></Advertise>
-                :
-                " "
+                    <Advertise></Advertise>
+                    :
+                    " "
             }
         </div>
     );

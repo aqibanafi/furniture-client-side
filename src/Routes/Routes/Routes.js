@@ -13,6 +13,7 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Advertise from "../../Pages/Home/Advertise";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
+import Message from "../../Pages/Message/Message";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyProducts from "../../Pages/MyProducts/MyProducts";
 import MyWishList from "../../Pages/MyWishList/MyWishList";
@@ -99,6 +100,10 @@ export const routes = createBrowserRouter([
                 path: '/dashbaord/payment/:id',
                 element: <PaymentForm></PaymentForm>,
                 loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
+            {
+                path: '/dashbaord/message',
+                element: <Message></Message>
             }
         ]
     }

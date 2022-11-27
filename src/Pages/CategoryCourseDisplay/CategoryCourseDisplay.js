@@ -31,7 +31,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             setListButtonDisable(true)
         }
         const wishList = {
-            picture: picture,
+            picture,
             name: name,
             location: location,
             resealablePrice: resealablePrice,
