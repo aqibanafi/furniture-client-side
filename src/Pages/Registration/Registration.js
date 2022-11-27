@@ -6,11 +6,15 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
+import useToken from '../../hooks/useToken';
 
 const Registration = () => {
 
     //Import Auth Context
     const { createUser, updateUserProfile, googleProviderLogin } = useContext(AuthContext)
+
+    const { user } = useContext(AuthContext)
+
 
     //Store Name, Location, Email, ProfileType And Image for Database
 
@@ -25,6 +29,7 @@ const Registration = () => {
     //Form handle Functions
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [image, setImage] = useState()
+
     const onSubmit = data => {
         const userName = data.name;
         const location = data.location;
@@ -75,6 +80,24 @@ const Registration = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("User Created Successfully")
+                            const currentUser = {
+                                email: user?.email
+                            }
+                            //Get JWT Token
+                            fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(currentUser)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    localStorage.setItem('thePersonal', data.token)
+                                    toast.success("Login Successful")
+                                    navigate('/login')
+
+                                })
                         }
                     })
             })

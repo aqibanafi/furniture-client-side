@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
     //Import Auth Info
     const { signIn, resetPassword, googleProviderLogin } = useContext(AuthContext)
+
 
     //Email State
     const [getEmail, setGetEmail] = useState(null)
@@ -28,6 +30,25 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success("Successfully Login")
+                const currentUser = {
+                    email: user?.email
+                }
+                //Get JWT Token
+                fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('thePersonal', data.token)
+                        toast.success("Login Successful")
+                        navigate(from, { replace: true })
+
+                    })
             })
             .catch(error => console.error(error))
 
@@ -43,6 +64,25 @@ const Login = () => {
                 const user = result.user;
                 navigate(from, { replace: true })
                 console.log(user);
+                toast.success("Login Successful")
+                const currentUser = {
+                    email: user?.email
+                }
+                //Get JWT Token
+                fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('thePersonal', data.token)
+                        toast.success("Login Successful")
+                        navigate(from, { replace: true })
+
+                    })
             })
             .catch(error => {
                 console.error(error)

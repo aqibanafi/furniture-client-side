@@ -18,7 +18,7 @@ const Header = () => {
             .then(() => {
                 toast.error("You Have Logged Out")
                 navigate('/')
-                localStorage.removeItem('superkitch');
+                localStorage.removeItem('thePersonal');
             })
             .catch(error => console.error(error))
     }

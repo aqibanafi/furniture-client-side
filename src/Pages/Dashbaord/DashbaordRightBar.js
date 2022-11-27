@@ -31,7 +31,7 @@ const DashbaordRightBar = () => {
             .then(() => {
                 toast.error("You Have Logged Out")
                 navigate('/')
-                localStorage.removeItem('accessToken');
+                localStorage.removeItem('thePersonal');
             })
             .catch(error => console.error(error))
     }
