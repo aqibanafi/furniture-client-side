@@ -18,6 +18,7 @@ import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyProducts from "../../Pages/MyProducts/MyProducts";
 import MyWishList from "../../Pages/MyWishList/MyWishList";
 import PaymentForm from "../../Pages/PaymentForm/PaymentForm";
+import PostReview from "../../Pages/PostReview/PostReview";
 import Registration from "../../Pages/Registration/Registration";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
@@ -53,6 +54,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/postreview',
+                element: <PostReview></PostReview>
             },
             {
                 path: '/*',

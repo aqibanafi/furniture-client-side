@@ -7,9 +7,19 @@ const AllReports = () => {
     const { data = [], isLoading } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/reports')
-            const data = res.json()
-            return data;
+            try {
+                const res = await fetch('http://localhost:5000/reports', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('thePersonal')}`
+                    }
+                })
+                const data = res.json()
+                return data;
+            }
+            catch (error) {
+                console.error(error)
+            }
+
         }
     })
 
