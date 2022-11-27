@@ -7,9 +7,18 @@ const AllProducts = () => {
     const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['allProduct'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allproducts')
-            const data = await res.json()
-            return data;
+            try {
+                const res = await fetch('http://localhost:5000/allproducts', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('thePersonal')}`
+                    }
+                })
+                const data = await res.json()
+                return data;
+            }
+            catch (error) {
+                console.error(error)
+            }
         }
     })
 

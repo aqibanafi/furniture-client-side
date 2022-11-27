@@ -73,7 +73,8 @@ const MyProductsDisplay = ({ products }) => {
             if (result.isConfirmed) {
                 console.log(result)
                 fetch(`http://localhost:5000/deleteproduct/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    authorization: `bearer ${localStorage.getItem('thePersonal')}`
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -110,7 +111,8 @@ const MyProductsDisplay = ({ products }) => {
         fetch(`http://localhost:5000/makeadvertise/${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(makeAdvertise)
         })

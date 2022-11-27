@@ -38,7 +38,8 @@ const EditProfileDisplay = ({ product }) => {
         fetch(`http://localhost:5000/myproducts/${_id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(products)
         })
@@ -61,7 +62,7 @@ const EditProfileDisplay = ({ product }) => {
                     <input {...register("originalPrice", { required: true })} type="text" name='originalPrice' defaultValue={originalPrice} className="input input-bordered w-full mb-5" />
                     <input {...register("yearOfUse", { required: true })} type="text" name='yearOfUse' defaultValue={yearOfUse} className="input input-bordered w-full mb-5" />
                     <input {...register("postTime", { required: true })} type="text" name='postTime' defaultValue={postTime} className="input input-bordered w-full mb-5" />
-                    <input {...register("sellersName", { required: true })} type="text" name='sellersName' defaultValue={sellersName} className="input input-bordered w-full mb-5"/>
+                    <input {...register("sellersName", { required: true })} type="text" name='sellersName' defaultValue={sellersName} className="input input-bordered w-full mb-5" />
                     <input className='btn' type="submit" value='Edit' />
                 </form>
             </div>

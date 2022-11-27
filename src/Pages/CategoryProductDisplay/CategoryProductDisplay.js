@@ -59,7 +59,8 @@ const CategoryProductDisplay = ({ productDetails }) => {
         fetch(`http://localhost:5000/addnewproduct/${email}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(wishList)
         })

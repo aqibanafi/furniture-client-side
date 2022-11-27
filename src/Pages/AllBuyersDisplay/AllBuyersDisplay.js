@@ -29,7 +29,10 @@ const AllBuyersDisplay = ({ buyerInfo, refetch, setDeleteProducts, deleteProduct
             if (result.isConfirmed) {
                 console.log(result)
                 fetch(`http://localhost:5000/deleteuser/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('thePersonal')}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {

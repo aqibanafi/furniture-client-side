@@ -12,7 +12,7 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
 
     const { data: userVerify } = useQuery({
-        queryKey:['userVerification'],
+        queryKey: ['userVerification'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
             const data = await res.json()
@@ -69,7 +69,8 @@ const AddProduct = () => {
                 fetch('http://localhost:5000/addnewproduct', {
                     method: 'POST',
                     headers: {
-                        'content-type': 'application/json'
+                        'content-type': 'application/json',
+                        authorization: `bearer ${localStorage.getItem('thePersonal')}`
                     },
                     body: JSON.stringify(addProduct)
                 })
