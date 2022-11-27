@@ -19,6 +19,10 @@ import MyProducts from "../../Pages/MyProducts/MyProducts";
 import MyWishList from "../../Pages/MyWishList/MyWishList";
 import PaymentForm from "../../Pages/PaymentForm/PaymentForm";
 import Registration from "../../Pages/Registration/Registration";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -44,7 +48,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <CategoryCourses></CategoryCourses>,
-                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
                 path: '/blogs',
@@ -58,11 +62,11 @@ export const routes = createBrowserRouter([
     },
     {
         path: '/dashbaord',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
             {
                 path: '/dashbaord/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
             },
             {
                 path: '/dashbaord/myorders',
@@ -70,36 +74,36 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashbaord/myproducts',
-                element: <MyProducts></MyProducts>
+                element: <BuyerRoute><MyProducts></MyProducts></BuyerRoute>
             },
             {
                 path: '/dashbaord/allbuyers',
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashbaord/allsellers',
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashbaord/mywishlist/',
-                element: <MyWishList></MyWishList>
+                element: <BuyerRoute><MyWishList></MyWishList></BuyerRoute>
             },
             {
                 path: '/dashbaord/reports/',
-                element: <AllReports></AllReports>
+                element: <AdminRoute><AllReports></AllReports></AdminRoute>
             },
             {
                 path: '/dashbaord/editproduct/',
-                element: <EditProduct></EditProduct>
+                element: <SellerRoute><EditProduct></EditProduct></SellerRoute>
             },
             {
                 path: '/dashbaord/allproducts',
-                element: <AllProducts></AllProducts>
+                element: <AdminRoute><AllProducts></AllProducts></AdminRoute>
             },
             {
                 path: '/dashbaord/payment/:id',
                 element: <PaymentForm></PaymentForm>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
                 path: '/dashbaord/message',
