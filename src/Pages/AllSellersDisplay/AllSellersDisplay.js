@@ -29,9 +29,8 @@ const AllSellersDisplay = ({ buyerInfo, refetch }) => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>
-                                Name
-                            </th>
+                            <th>Photo</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Location</th>
                             <th>Role</th>
@@ -48,13 +47,11 @@ const AllSellersDisplay = ({ buyerInfo, refetch }) => {
                                             <img src={buyerInfo.image} alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="font-bold">{buyerInfo.name}</div>
-                                    </div>
                                 </div>
                             </td>
+                            <td>{buyerInfo.name}</td>
                             <td>
-                                {buyerInfo.name}
+                                {buyerInfo.email}
                                 <br />
                             </td>
                             <td>{buyerInfo.location}</td>

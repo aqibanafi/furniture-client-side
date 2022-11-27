@@ -45,7 +45,7 @@ const AllReports = () => {
                                     <p className={`${report.productQuality === "Excellent" && 'bg-green-600 text-center p-2 text-white'} ${report.productQuality === "Not Recommended" && "Bad" && 'bg-red-600 text-center p-2 text-white'} ${report.productQuality === "Good" && "Average" && 'bg-yellow-500 text-center p-2 text-white'}`}>{report.productQuality}</p>
                                     <br />
                                 </td>
-                                <td>{report.message}</td>
+                                <td>{report.message.slice(0, 50) + '...'}</td>
 
                             </tr>)
                         }

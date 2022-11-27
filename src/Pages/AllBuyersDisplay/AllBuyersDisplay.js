@@ -61,9 +61,8 @@ const AllBuyersDisplay = ({ buyerInfo, refetch, setDeleteProducts, deleteProduct
             <table className="table w-full">
                 <thead>
                     <tr>
-                        <th>
-                            Name
-                        </th>
+                        <th>Photo</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Location</th>
                         <th>Role</th>
@@ -79,20 +78,16 @@ const AllBuyersDisplay = ({ buyerInfo, refetch, setDeleteProducts, deleteProduct
                                         <img src={buyerInfo.image} alt="Avatar Tailwind CSS Component" />
                                     </div>
                                 </div>
-                                <div>
-                                    <div className="font-bold">{buyerInfo.name}</div>
-                                </div>
                             </div>
                         </td>
+                        <td>{buyerInfo.name}</td>
                         <td>
-                            {buyerInfo.name}
+                            {buyerInfo.email}
                             <br />
                         </td>
                         <td>{buyerInfo.location}</td>
                         <td>{buyerInfo.role}</td>
-                        <th>
-                            <button onClick={() => handleDelete(buyerInfo._id)} className="btn btn-ghost btn-xs">Delete</button>
-                        </th>
+                        <td><button onClick={() => handleDelete(buyerInfo._id)} className="btn bg-red-600 border-0 hover:bg-red-800 text-white btn-xs">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

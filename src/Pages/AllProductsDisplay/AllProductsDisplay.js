@@ -61,30 +61,27 @@ const AllProductsDisplay = ({ product, refetch, deleteProduct, setDeleteProducts
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>
-                                Product Name
-                            </th>
+                            <th>Product Name</th>
                             <th>Seller Name</th>
                             <th>Seller Email</th>
                             <th>Location</th>
                             <th>Official Price</th>
-                            <th>Update Product</th>
                             <th>Delete Product</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td className='w-10'>
-                                {product.name}
+                                {product.name.slice(0, 30) + '...'}
                             </td>
                             <td>
-                                {product.email}
+                                {product.sellersName}
                                 <br />
                             </td>
+                            <td>{product.email}</td>
                             <td>{product.location}</td>
-                            <td>{product.officialPrice}</td>
-                            <td><button onClick={() => handleDelete(product._id)}>Delete</button></td>
-                            <Link to='/dashbaord/editproduct/'><td><button>Update</button></td></Link>
+                            <td>{product.originalPrice}</td>
+                            <td><button className='btn btn-xs border-0 bg-red-600 text-white hover:bg-red-800' onClick={() => handleDelete(product._id)}>Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
