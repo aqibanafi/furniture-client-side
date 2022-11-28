@@ -23,7 +23,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
         queryKey: ['buyer'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/users/buyer/${user?.email}`, {
+                const res = await fetch(`https://the-personal.vercel.app/users/buyer/${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('thePersonal')}`
                     }
@@ -62,7 +62,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             email: user?.email,
         }
 
-        fetch(`http://localhost:5000/addwishlist/${email}`, {
+        fetch(`https://the-personal.vercel.app/addwishlist/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

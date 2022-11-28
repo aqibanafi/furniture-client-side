@@ -17,15 +17,17 @@ const CategoryProductDisplay = ({ productDetails }) => {
     const { user } = useContext(AuthContext);
     const email = user?.email;
 
-    const { data = [], isLoading } = useQuery({
+    const { data: verifyUser = [], isLoading } = useQuery({
         queryKey: ['sellersInfo'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seller/${email}`)
+            const res = await fetch(`https://the-personal.vercel.app/buyer/${email}`)
             const data = await res.json()
             console.log(data)
             return data;
         }
     })
+
+    console.log(verifyUser)
 
     if (isLoading) {
         <RevolvingDot height="100" width="100" radius="40" color="#062037" secondaryColor='' ariaLabel="revolving-dot-loading" wrapperStyle={{}} wrapperClass="" visible={true} />
@@ -56,7 +58,7 @@ const CategoryProductDisplay = ({ productDetails }) => {
             email: user?.email,
         }
 
-        fetch(`http://localhost:5000/addnewproduct/${email}`, {
+        fetch(`https://the-personal.vercel.app/addnewproduct/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

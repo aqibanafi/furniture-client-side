@@ -58,7 +58,7 @@ const Registration = () => {
                             email: user?.email
                         }
                         //Get JWT Token
-                        fetch('http://localhost:5000/jwt', {
+                        fetch('https://the-personal.vercel.app/jwt', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -80,7 +80,7 @@ const Registration = () => {
                     role: profileType,
                     verify: "Not Verified"
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://the-personal.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -120,7 +120,7 @@ const Registration = () => {
                     email: user?.email
                 }
                 //Get JWT Token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://the-personal.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -138,7 +138,7 @@ const Registration = () => {
                     image,
                     role: 'Buyer'
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://the-personal.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

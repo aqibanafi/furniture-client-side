@@ -36,7 +36,7 @@ const AdvertiseDisplay = ({ advertiseProduct, setAdvertiseProduct }) => {
             email: user?.email,
         }
 
-        fetch(`http://localhost:5000/addnewproduct/${user?.email}`, {
+        fetch(`https://the-personal.vercel.app/addnewproduct/${user?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

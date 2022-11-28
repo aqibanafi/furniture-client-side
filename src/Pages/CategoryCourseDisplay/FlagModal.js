@@ -24,7 +24,7 @@ const FlagModal = ({ courseDetails }) => {
             productQuality,
             message
         }
-        fetch('http://localhost:5000/reportedProducts', {
+        fetch('https://the-personal.vercel.app/reportedProducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

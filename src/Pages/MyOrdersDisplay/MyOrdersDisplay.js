@@ -12,7 +12,7 @@ const MyOrdersDisplay = ({ order }) => {
             status: "Sold"
         }
 
-        fetch(`http://localhost:5000/makesoldproduct/${id}`, {
+        fetch(`https://the-personal.vercel.app/makesoldproduct/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

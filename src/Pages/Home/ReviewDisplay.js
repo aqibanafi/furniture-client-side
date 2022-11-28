@@ -16,7 +16,7 @@ export default function ReviewDisplay() {
     const { data = [] } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/reviews')
+            const res = await fetch('https://the-personal.vercel.app/reviews')
             const data = await res.json()
             return data;
         }

@@ -35,7 +35,7 @@ const EditProfileDisplay = ({ product }) => {
             postTime,
             sellersName
         }
-        fetch(`http://localhost:5000/myproducts/${_id}`, {
+        fetch(`https://the-personal.vercel.app/myproducts/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

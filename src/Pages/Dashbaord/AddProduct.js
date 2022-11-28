@@ -14,7 +14,7 @@ const AddProduct = () => {
     const { data: userVerify } = useQuery({
         queryKey: ['userVerification'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seller/${user?.email}`)
+            const res = await fetch(`https://the-personal.vercel.app/seller/${user?.email}`)
             const data = await res.json()
             return data;
         }
@@ -67,7 +67,7 @@ const AddProduct = () => {
                     status: "Active",
                 }
                 console.log(addProduct)
-                fetch('http://localhost:5000/addnewproduct', {
+                fetch('https://the-personal.vercel.app/addnewproduct', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

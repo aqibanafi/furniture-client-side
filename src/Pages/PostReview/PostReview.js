@@ -41,10 +41,11 @@ const PostReview = () => {
             rating: reviewStar,
         }
         console.log(review)
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://the-personal.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(review)
         })

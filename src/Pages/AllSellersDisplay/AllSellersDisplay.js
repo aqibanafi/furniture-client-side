@@ -9,7 +9,7 @@ const AllSellersDisplay = ({ buyerInfo, refetch, deleteProduct, setDeleteProduct
         const makeVerify = {
             verify: "Verified"
         }
-        fetch(`http://localhost:5000/sellerverify/${id}`, {
+        fetch(`https://the-personal.vercel.app/sellerverify/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -50,7 +50,7 @@ const AllSellersDisplay = ({ buyerInfo, refetch, deleteProduct, setDeleteProduct
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(result)
-                fetch(`http://localhost:5000/deleteuser/${id}`, {
+                fetch(`https://the-personal.vercel.app/deleteuser/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `bearer ${localStorage.getItem('thePersonal')}`

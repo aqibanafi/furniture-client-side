@@ -9,7 +9,7 @@ const Advertise = () => {
     const { data = [], isLoading } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const data = axios.get('http://localhost:5000/advertise')
+            const data = axios.get('https://the-personal.vercel.app/advertise')
             return data;
         }
     })

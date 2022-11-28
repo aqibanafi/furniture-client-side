@@ -36,7 +36,7 @@ const Modal = ({ productDetails }) => {
             meetingLocation,
             date: formateDate,
         }
-        fetch('http://localhost:5000/bookingdata', {
+        fetch('https://the-personal.vercel.app/bookingdata', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

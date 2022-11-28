@@ -9,7 +9,7 @@ const AllSellers = () => {
         queryKey: ['sellers'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/sellers', {
+                const res = await fetch('https://the-personal.vercel.app/sellers', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('thePersonal')}`
                     }

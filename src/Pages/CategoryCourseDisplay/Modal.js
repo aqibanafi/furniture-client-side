@@ -39,7 +39,7 @@ const Modal = ({ productBooked }) => {
             meetingLocation,
             date: formateDate,
         }
-        fetch('http://localhost:5000/bookingdata', {
+        fetch('https://the-personal.vercel.app/bookingdata', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -51,6 +51,7 @@ const Modal = ({ productBooked }) => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success("Your Booking is Received")
+                    navigate('/dashbaord/myorders')
                 }
             })
     }

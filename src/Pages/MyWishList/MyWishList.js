@@ -14,7 +14,7 @@ const MyWishList = () => {
     const { data = [], isLoading } = useQuery({
         queryKey: ['myWishList'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/wishlist/${user?.email}`)
+            const res = await fetch(`https://the-personal.vercel.app/wishlist/${user?.email}`)
             const data = await res.json()
             return data;
         }

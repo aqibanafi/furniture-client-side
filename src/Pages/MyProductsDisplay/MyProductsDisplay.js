@@ -14,7 +14,7 @@ const MyProductsDisplay = ({ products }) => {
     const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts/${user?.email}`)
+            const res = await fetch(`https://the-personal.vercel.app/myproducts/${user?.email}`)
             const data = await res.json()
             return data;
         }
@@ -36,18 +36,17 @@ const MyProductsDisplay = ({ products }) => {
             status: "Sold"
         }
 
-        fetch(`http://localhost:5000/makesold/${id}`, {
+        fetch(`https://the-personal.vercel.app/makesold/${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(status)
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    toast.success("Product Status Changed")
-                }
+                console.log(data)
             })
     }
 
@@ -72,7 +71,7 @@ const MyProductsDisplay = ({ products }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(result)
-                fetch(`http://localhost:5000/deleteproduct/${id}`, {
+                fetch(`https://the-personal.vercel.app/deleteproduct/${id}`, {
                     method: 'DELETE',
                     authorization: `bearer ${localStorage.getItem('thePersonal')}`
                 })
@@ -108,7 +107,7 @@ const MyProductsDisplay = ({ products }) => {
             advertiseStatus: "Advertised"
         }
 
-        fetch(`http://localhost:5000/makeadvertise/${id}`, {
+        fetch(`https://the-personal.vercel.app/makeadvertise/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

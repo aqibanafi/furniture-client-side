@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const CheckoutForm = ({ fnData }) => {
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const stripe = useStripe();
@@ -26,10 +26,11 @@ const CheckoutForm = ({ fnData }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://the-personal.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify({ price }),
         })
@@ -103,20 +104,20 @@ const CheckoutForm = ({ fnData }) => {
         }
         if (paymentIntent.status === "succeeded") {
             console.log('card info', card);
-            fetch('http://localhost:5000/payment', {
+            fetch('https://the-personal.vercel.app/payment', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(paymentInfo)
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.acknowledged) {
-                    toast.success(`Your Payment is Success for ${bookingItem}`)
-                    navigate('/')
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        toast.success(`Your Payment is Success for ${bookingItem}`)
+                        navigate('/')
+                    }
+                })
         }
     }
     return (
@@ -136,7 +137,7 @@ const CheckoutForm = ({ fnData }) => {
                     <textarea name='additional' className="textarea textarea-bordered w-full mt-5" placeholder="Additional information"></textarea>
                 </div>
                 <CardElement
-                className='mt-5 bg-slate-300 p-5 border text-white'
+                    className='mt-5 bg-slate-300 p-5 border text-white'
                     options={{
                         style: {
                             base: {

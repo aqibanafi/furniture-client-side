@@ -28,7 +28,7 @@ const AllBuyersDisplay = ({ buyerInfo, refetch, setDeleteProducts, deleteProduct
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(result)
-                fetch(`http://localhost:5000/deleteuser/${id}`, {
+                fetch(`https://the-personal.vercel.app/deleteuser/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `bearer ${localStorage.getItem('thePersonal')}`

@@ -50,7 +50,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <PrivateRoutes><CategoryCourses></CategoryCourses></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`https://the-personal.vercel.app/categories/${params.id}`)
             },
             {
                 path: '/blogs',
@@ -113,7 +113,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashbaord/payment/:id',
                 element: <BuyerRoute><PaymentForm></PaymentForm></BuyerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://the-personal.vercel.app/bookings/${params.id}`)
             },
             {
                 path: '/dashbaord/message',
