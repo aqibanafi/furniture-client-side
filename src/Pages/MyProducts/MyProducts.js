@@ -29,7 +29,9 @@ const MyProducts = () => {
             <div>
                 <h1 className='text-center font-bold text-3xl mb-10'>My Products ({data.length})</h1>
             </div>
-            {data.length === 0 && <p className='text-center font-bold text-4xl text-primary'>No Product Posted</p>}
+            <div>
+                {data.length === 0 && <p className='text-center font-bold text-4xl text-primary'>No Product Posted</p>}
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
                 {
                     data.map(product => <MyProductsDisplay products={product}></MyProductsDisplay>)
