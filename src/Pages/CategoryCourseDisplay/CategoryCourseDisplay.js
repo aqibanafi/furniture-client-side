@@ -45,7 +45,8 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
         fetch(`http://localhost:5000/addwishlist/${email}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(wishList)
         })

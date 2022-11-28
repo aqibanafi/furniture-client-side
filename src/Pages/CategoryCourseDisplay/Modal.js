@@ -42,7 +42,8 @@ const Modal = ({ productBooked }) => {
         fetch('http://localhost:5000/bookingdata', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(booking)
         })

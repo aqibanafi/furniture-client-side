@@ -7,20 +7,25 @@ import toast from 'react-hot-toast';
 import { format } from 'date-fns';
 import Lottie from "lottie-react";
 import reader from '../../assets/lottie/registration.json'
+import useToken from '../../hooks/useToken';
 
 const Registration = () => {
 
     //Import Auth Context
     const { createUser, updateUserProfile, googleProviderLogin } = useContext(AuthContext)
 
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
+    const [createdUserEmail, setCreateUserEmail] = useState('')
 
-    //Store Name, Location, Email, ProfileType And Image for Database
-
+    const [token] = useToken(createdUserEmail)
 
     //Navigate and Location
     const navigate = useNavigate()
+
+    if (token) {
+        navigate('/')
+    }
 
     //Date
     const date = new Date();
@@ -68,7 +73,6 @@ const Registration = () => {
                     role: profileType,
                     verify: "Not Verified"
                 }
-
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -80,24 +84,7 @@ const Registration = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("User Created Successfully")
-                            const currentUser = {
-                                email: user?.email
-                            }
-                            //Get JWT Token
-                            fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
-                                method: 'POST',
-                                headers: {
-                                    'content-type': 'application/json'
-                                },
-                                body: JSON.stringify(currentUser)
-                            })
-                                .then(res => res.json())
-                                .then(data => {
-                                    localStorage.setItem('thePersonal', data.token)
-                                    toast.success("Login Successful")
-                                    navigate('/login')
-
-                                })
+                            setCreateUserEmail(email)
                         }
                     })
             })
@@ -123,12 +110,29 @@ const Registration = () => {
                 toast.success("You Have Successfully Logged in")
                 const user = result.user;
                 console.log(user);
+                const currentUser = {
+                    email: user?.email
+                }
+                //Get JWT Token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('thePersonal', data.token)
+                        toast.success("Login Successful")
+
+                    })
                 const userInfo = {
                     name: user.displayName,
                     email: user.email,
                     date: formateDate,
                     image: image,
-                    role: 'buyer'
+                    role: 'Buyer'
                 }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
@@ -149,9 +153,6 @@ const Registration = () => {
                 console.error(error)
             })
     }
-
-
-
 
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 items-center justify-center mt-20 mb-20'>

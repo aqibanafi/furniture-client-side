@@ -26,34 +26,61 @@ const DashbaordLeftBar = () => {
 
     const menuOptions =
         <div className='bg-primary text-white flex flex-col gap-10 justify-center items-center p-10'>
-            <Link to='/'><img className='w-10' src={home} alt="" /></Link>
-            <Link to='/dashbaord/message'><img className='w-10' src={message} alt="" /></Link>
+            <div className="tooltip font-bold text-white" data-tip="Home">
+                <Link to='/'><img className='w-10' src={home} alt="" /></Link>
+            </div>
+            <div className="tooltip font-bold text-white" data-tip="Message">
+                <Link to='/dashbaord/message'><img className='w-10' src={message} alt="" /></Link>
+            </div>
+
 
             {
                 isAdmin &&
                 <>
-                    <Link to='/dashbaord/allbuyers/'><img className='w-10' src={buyer} alt="" /></Link>
-                    <Link to='/dashbaord/allsellers/'><img className='w-10' src={seller} alt="" /></Link>
-                    <Link to='/dashbaord/reports/'><img className='w-10' src={report} alt="" /></Link>
-                    <Link to='/dashbaord/allproducts'><img className='w-12' src={allproducts} alt="" /></Link>
+                    <div className="tooltip font-bold text-white" data-tip="All Buyers">
+                        <Link to='/dashbaord/allbuyers/'><img className='w-10' src={buyer} alt="" /></Link>
+                    </div>
+                    <div className="tooltip font-bold text-white" data-tip="All Sellers">
+                        <Link to='/dashbaord/allsellers/'><img className='w-10' src={seller} alt="" /></Link>
+                    </div>
+                    <div className="tooltip font-bold text-white" data-tip="Reports">
+                        <Link to='/dashbaord/reports/'><img className='w-10' src={report} alt="" /></Link>
+                    </div>
+                    <div className="tooltip font-bold text-white" data-tip="All Products">
+                        <Link to='/dashbaord/allproducts'><img className='w-12' src={allproducts} alt="" /></Link>
+                    </div>
                 </>
             }
             {
                 isBuyer &&
                 <>
-                    <Link to='/dashbaord/myorders/'><img className='w-10' src={checkout} title='My Orders' alt="" /></Link>
-                    <Link to='/dashbaord/mywishlist/'><img className='w-10' src={wishlist} title='My Wishlist' alt="" /></Link>
+                    <div className="tooltip font-bold text-white" data-tip="My Orders">
+                        <Link to='/dashbaord/myorders/'><img className='w-10' src={checkout} title='My Orders' alt="" /></Link>
+                    </div>
+                    <div className="tooltip font-bold text-white" data-tip="Wish List">
+                        <Link to='/dashbaord/mywishlist/'><img className='w-10' src={wishlist} title='My Wishlist' alt="" /></Link>
+                    </div>
                 </>
             }
             {
                 isSeller &&
                 <>
-                    <Link to='/dashbaord/myproducts'><img className='w-10' src={myproduct} title='My Products' alt="" /></Link>
-                    <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
+                    <div className="tooltip font-bold text-white" data-tip="My Products">
+                        <Link to='/dashbaord/myproducts'><img className='w-10' src={myproduct} title='My Products' alt="" /></Link>
+                    </div>
+                    <div className="tooltip font-bold text-white" data-tip="Add New Product">
+                        <Link to='/dashbaord/addproduct/'><img className='w-10' src={addproduct} title='Add Product' alt="" /></Link>
+                    </div>
                 </>
             }
-            <Link><img className='w-10' src={settings} alt="" /></Link>
-            <Link><img className='w-10' src={help} alt="" /></Link>
+            <div className="tooltip font-bold text-white" data-tip="Settings">
+                <Link><img className='w-10' src={settings} alt="" /></Link>
+            </div>
+            <div className="tooltip font-bold text-white" data-tip="Help">
+                <Link><img className='w-10' src={help} alt="" /></Link>
+            </div>
+
+
         </div>
     return (
         <div>

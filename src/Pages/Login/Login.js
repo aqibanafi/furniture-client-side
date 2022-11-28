@@ -6,12 +6,16 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import Lottie from 'lottie-react';
 import reader from '../../assets/lottie/login.json';
+import { format } from 'date-fns';
 
 const Login = () => {
 
     //Import Auth Info
     const { signIn, resetPassword, googleProviderLogin } = useContext(AuthContext)
 
+    //Date
+    const date = new Date();
+    const formateDate = format(date, 'PP')
 
     //Email State
     const [getEmail, setGetEmail] = useState(null)
@@ -69,7 +73,7 @@ const Login = () => {
                     email: user?.email
                 }
                 //Get JWT Token
-                fetch('https://assignment-11-superkitch-server-side.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -81,8 +85,28 @@ const Login = () => {
                         localStorage.setItem('thePersonal', data.token)
                         toast.success("Login Successful")
                         navigate(from, { replace: true })
-
                     })
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    date: formateDate,
+                    image: user.photoURL,
+                    role: 'Buyer'
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success("User Created Successfully")
+                        }
+                    })
+
             })
             .catch(error => {
                 console.error(error)

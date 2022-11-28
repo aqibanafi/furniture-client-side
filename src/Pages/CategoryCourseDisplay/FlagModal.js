@@ -27,16 +27,17 @@ const FlagModal = ({ courseDetails }) => {
         fetch('http://localhost:5000/reportedProducts', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('thePersonal')}`
             },
             body: JSON.stringify(reportProductInfo)
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged) {
-                toast.success("Thanks For Your Feedback")
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("Thanks For Your Feedback")
+                }
+            })
     }
     return (
         <div>
@@ -48,7 +49,7 @@ const FlagModal = ({ courseDetails }) => {
                         <h3 className="text-lg font-bold mb-10">Report Product: {name}</h3>
                         <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
                             <div className='w-full mb-5'>
-                                <select {...register("selectQuality", { required: true }) } className="select w-full">
+                                <select {...register("selectQuality", { required: true })} className="select w-full">
                                     <option disabled selected>Choose Quality</option>
                                     <option>Excellent</option>
                                     <option>Good</option>
@@ -57,7 +58,7 @@ const FlagModal = ({ courseDetails }) => {
                                     <option>Not Recommended</option>
                                 </select>
                             </div>
-                            <textarea {...register("reportMessage", { required: true }) } className="textarea textarea-bordered w-full" placeholder="Your Message"></textarea>
+                            <textarea {...register("reportMessage", { required: true })} className="textarea textarea-bordered w-full" placeholder="Your Message"></textarea>
                             <div className='flex justify-center mt-10'>
                                 <input className="btn btn-error" type="submit" value="Report" />
                             </div>
