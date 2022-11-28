@@ -103,7 +103,7 @@ export const routes = createBrowserRouter([
                 element: <AdminRoute><AllReports></AllReports></AdminRoute>
             },
             {
-                path: '/dashbaord/editproduct/',
+                path: '/dashbaord/editproduct/:id',
                 element: <SellerRoute><EditProduct></EditProduct></SellerRoute>
             },
             {
