@@ -39,7 +39,7 @@ const DashbaordRightBar = () => {
     return (
         <div className='bg-primary p-5'>
             <div className='mb-10'>
-                <img className='rounded-lg' src={user?.photoURL} alt="" />
+                <img className='rounded-lg w-96' src={user?.photoURL} alt="" />
             </div>
             <div>
                 <p className='text-white font-bold mb-2'><span className='text-lg mr-2'>User Name:</span> <span className='text-yellow-600 text-lg lg:text-2xl'>{user?.displayName}</span></p>

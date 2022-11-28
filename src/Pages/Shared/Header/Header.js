@@ -23,63 +23,62 @@ const Header = () => {
             .catch(error => console.error(error))
     }
 
-    const menuItems =
-        <>
-            <div className='grid grid-cols-1 lg:grid-cols-6 p-5 gap-10 font-bold'>
-                <Link to='/' className='hover:text-slate-400'><li>Home</li></Link>
-                <Link to='/blogs' className='hover:text-slate-400'><li>Blog</li></Link>
-                <Link to='/postreview' className='hover:text-slate-400'><li>Post Review</li></Link>
-                <Link to='/contact' className='hover:text-slate-400'><li>Contact</li></Link>
-                {
-                    user?.email &&
-                    <Link to='/dashbaord' className='hover:text-slate-400'><li>Dashbaord</li></Link>
-                }
-            </div>
-        </>
     return (
-        <div className='mb-5'>
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            {menuItems}
-                        </ul>
-                    </div>
-
-
-                    <div className='flex items-center gap-5 mr-10'>
-                        <Link to='/'><img className='hidden lg:block' src={Logo} alt="" /></Link>
-                        <Link to='/' className="text-primary font-bold text-xl">The Personal</Link>
-                    </div>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0">
-                        {menuItems}
+        <div className="navbar bg-base-100 mb-5">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-compact font-bold dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><Link to='/' className='hover:text-slate-400'>Home</Link></li>
+                        <li><Link to='/blogs' className='hover:text-slate-400'>Blog</Link></li>
+                        <li><Link to='/postreview' className='hover:text-slate-400'>Post Review</Link></li>
+                        <li><Link to='/contact' className='hover:text-slate-400'>Contact</Link></li>
+                        <li>
+                            {
+                                user?.email &&
+                                <Link to='/dashbaord' className='hover:text-slate-400'>Dashboard</Link>
+                            }
+                        </li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <div>
-                        {
-                            user?.email ?
-                                <></>
-                                :
-                                <Link to='/login'><button className='btn btn-secondary'>Login</button></Link>
-                        }
-                    </div>
-                    <div>
+                <div className='flex items-center'>
+                    <Link to='/'><img src={Logo} alt="" /></Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">The Personal</Link>
+                </div>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal p-0 font-semibold">
+                    <li><Link to='/' className='hover:text-slate-400'>Home</Link></li>
+                    <li><Link to='/blogs' className='hover:text-slate-400'>Blog</Link></li>
+                    <li><Link to='/postreview' className='hover:text-slate-400'>Post Review</Link></li>
+                    <li><Link to='/contact' className='hover:text-slate-400'>Contact</Link></li>
+                    <li>
                         {
                             user?.email &&
-                            <div>
-                                <Link onClick={handleLogOut} className='btn btn-secondary hover:bg-slate-600'>Logout</Link>
-                            </div>
+                            <Link to='/dashbaord' className='hover:text-slate-400'>Dashboard</Link>
                         }
-                    </div>
+                    </li>
+                </ul>
+            </div>
+            <div className="navbar-end">
+                <div>
+                    {
+                        user?.email ?
+                            <></>
+                            :
+                            <Link to='/login'><button className='btn btn-secondary'>Login</button></Link>
+                    }
                 </div>
-
-
+                <div>
+                    {
+                        user?.email &&
+                        <div>
+                            <Link onClick={handleLogOut} className='btn btn-secondary hover:bg-slate-600'>Logout</Link>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     );

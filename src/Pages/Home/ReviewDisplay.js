@@ -23,11 +23,11 @@ export default function ReviewDisplay() {
     })
     return (
         <>
-        <div className="mt-20">
-            <h1 className='text-3xl font-bold text-center mb-10'>Our Valuable Clients Says</h1>
-        </div>
+            <div className="mt-20">
+                <h1 className='text-3xl font-bold text-center mb-10'>Our Valuable Clients Says</h1>
+            </div>
             <Swiper
-                slidesPerView={3}
+                slidesPerView={2}
                 spaceBetween={30}
                 freeMode={true}
                 pagination={{
@@ -35,7 +35,7 @@ export default function ReviewDisplay() {
                 }}
                 style={{
                     "--swiper-pagination-color": "#FFF",
-                    "--swiper-navigation-color": "#062037",
+                    "--swiper-navigation-color": "#062037"
                 }}
                 modules={[FreeMode, Pagination]}
                 className="mySwiper"
@@ -48,7 +48,7 @@ export default function ReviewDisplay() {
                                     <img className="rounded-full w-20 h-20" src={review.image} alt="" />
                                 </div>
                                 <div className="flex flex-col items-center">
-                                    <p className="font-semibold mb-1">{review.ratingComment}</p>
+                                    <p className="font-light md:font-semibold mb-1">{review.ratingComment}</p>
                                     <p className="mb-1">{review.rating === 5 &&
                                         <div className="flex gap-2 text-xs lg:text-base">
                                             <FaStar className="text-amber-400"></FaStar>
@@ -88,7 +88,7 @@ export default function ReviewDisplay() {
                                             </div>
                                         }
                                     </p>
-                                    <p className="font-normal">{review.message}</p>
+                                    <p className="font-normal hidden md:block">{review.message}</p>
                                 </div>
 
                             </div>

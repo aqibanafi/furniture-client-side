@@ -6,8 +6,8 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
 import Lottie from "lottie-react";
-import reader from '../../assets/lottie/registration.json'
-import useToken from '../../hooks/useToken';
+import reader from '../../assets/lottie/registration.json';
+import arrow from '../../assets/icons/registration-arroe.png';
 
 const Registration = () => {
 
@@ -16,16 +16,8 @@ const Registration = () => {
 
     const { user, logOut } = useContext(AuthContext)
 
-    const [createdUserEmail, setCreateUserEmail] = useState('')
-
-    const [token] = useToken(createdUserEmail)
-
     //Navigate and Location
     const navigate = useNavigate()
-
-    if (token) {
-        navigate('/')
-    }
 
     //Date
     const date = new Date();
@@ -62,6 +54,21 @@ const Registration = () => {
                         const user = result.user;
                         console.log(user)
                         handleUpdateUserProfile(userName, data.data.url)
+                        const currentUser = {
+                            email: user?.email
+                        }
+                        //Get JWT Token
+                        fetch('http://localhost:5000/jwt', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(currentUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                localStorage.setItem('thePersonal', data.token)
+                            })
                     })
                     .catch(error => console.error(error))
                 const userInfo = {
@@ -84,7 +91,7 @@ const Registration = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("User Created Successfully")
-                            setCreateUserEmail(email)
+                            navigate('/')
                         }
                     })
             })
@@ -106,10 +113,9 @@ const Registration = () => {
     const handleGoogleSignUp = () => {
         googleProviderLogin(googleProvider)
             .then(result => {
-
-                toast.success("You Have Successfully Logged in")
                 const user = result.user;
                 console.log(user);
+                const image = user.photoURL;
                 const currentUser = {
                     email: user?.email
                 }
@@ -124,14 +130,12 @@ const Registration = () => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('thePersonal', data.token)
-                        toast.success("Login Successful")
-
                     })
                 const userInfo = {
                     name: user.displayName,
                     email: user.email,
                     date: formateDate,
-                    image: image,
+                    image,
                     role: 'Buyer'
                 }
                 fetch('http://localhost:5000/users', {
@@ -145,6 +149,7 @@ const Registration = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("User Created Successfully")
+                            navigate('/')
                         }
                     })
 
@@ -159,9 +164,13 @@ const Registration = () => {
             <div>
                 <div className="w-full rounded-md shadow dark:bg-gray-900 dark:text-gray-100 p-5">
                     <h2 className="mb-3 text-3xl font-semibold text-center">Registration Here</h2>
-                    <p className="text-sm text-center dark:text-gray-400">Do you have an account?
-                        <Link to='/login' rel="noopener noreferrer" className="focus:underline hover:underline ml-2">login here</Link>
-                    </p>
+                    <div className='flex gap-5 justify-center ml-28'>
+                        <p>Do you have an account?</p>
+                        <div className='flex items-center gap-2'>
+                            <img className='w-10' src={arrow} alt="" />
+                            <Link to='/login' className='mt-3 font-bold hover:text-orange-500'>Login here</Link>
+                        </div>
+                    </div>
                     <div className="my-6 space-y-4">
                         <button onClick={handleGoogleSignUp} aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">

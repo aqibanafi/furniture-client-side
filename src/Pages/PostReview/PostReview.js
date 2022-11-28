@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import arrow from '../../assets/icons/review-arrow.png';
 
 const PostReview = () => {
 
@@ -138,7 +139,14 @@ const PostReview = () => {
                             </div>
                         </div>
                         :
-                        <h2 className='text-4xl font-bold text-center mb-20'>Please <Link to='/login' className='text-primary text-5xl ml-3 mr-3 hover:text-gray-500'>Login</Link> to Post Review</h2>
+                        <div className='flex flex-wrap items-center gap-3 justify-center'>
+                            <p className='text-3xl font-medium'>Please</p>
+                            <div className='flex items-center gap-3'>
+                                <img className='w-10 h-10' src={arrow} alt="" />
+                                <Link to='/login' className='text-4xl font-bold hover:text-slate-600'>Login</Link>
+                            </div>
+                            <p className='text-3xl font-medium'>to post review</p>
+                        </div>
                 }
             </div>
             <div></div>

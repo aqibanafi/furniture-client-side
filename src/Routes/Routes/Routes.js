@@ -7,6 +7,7 @@ import AllReports from "../../Pages/AllReports/AllReports";
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import Blogs from "../../Pages/Blogs/Blogs";
 import CategoryCourses from "../../Pages/CategoryCourses/CategoryCourses";
+import Contact from "../../Pages/Contact/Contact";
 import AddProduct from "../../Pages/Dashbaord/AddProduct";
 import EditProduct from "../../Pages/EditProduct/EditProduct";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
@@ -58,6 +59,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/postreview',
                 element: <PostReview></PostReview>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
             },
             {
                 path: '/*',

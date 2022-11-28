@@ -37,6 +37,7 @@ const AddProduct = () => {
         const sellerName = user?.displayName;
         const verify = userVerify.verify;
         const description = data.description;
+        const yearOfUses = data.yearOfUse;
         const yearOfPurchase = data.purchaseYear;
         const category = data.productCategory;
         const formData = new FormData()
@@ -57,7 +58,7 @@ const AddProduct = () => {
                     location: location,
                     resealablePrice: resaleablePrice,
                     originalPrice: orginalPrice,
-                    yearOfUse: data.yearOfUse,
+                    yearOfUse: yearOfUses,
                     postTime: formateDate,
                     purchaseYear: yearOfPurchase,
                     sellersName: sellerName,

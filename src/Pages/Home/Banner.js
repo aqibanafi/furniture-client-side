@@ -67,7 +67,7 @@ export default function Banner() {
                                 </div>
                                 <div className="flex flex-col gap-5 text-secendary text-center font-semibold py-40">
                                     <p data-aos="zoom-in-down">{info.subTitle}</p>
-                                    <h1 className="text-6xl" data-aos="zoom-in-down">{info.title}</h1>
+                                    <h1 className="text-2xl md:text-6xl" data-aos="zoom-in-down">{info.title}</h1>
                                     <div className="mt-5">
                                         <Link to='/services'>
                                             <button className="btn btn-active bg-primary border-0 px-20 hover:bg-black text-white" data-aos="zoom-in-down">Get Started</button>
