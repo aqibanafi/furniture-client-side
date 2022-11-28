@@ -112,7 +112,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashbaord/payment/:id',
-                element: <SellerRoute><PaymentForm></PaymentForm></SellerRoute>,
+                element: <BuyerRoute><PaymentForm></PaymentForm></BuyerRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {

@@ -1,9 +1,31 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const MyOrdersDisplay = ({ order }) => {
 
     const { picture, bookingItem, furniturePrice, _id } = order;
+
+    //Handle Product Status Changed
+    const handleStatusChanged = id => {
+        const status = {
+            status: "Sold"
+        }
+
+        fetch(`http://localhost:5000/makesoldproduct/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(status)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("Product Status Changed")
+                }
+            })
+    }
     return (
         <div>
             <div className='shadow-xl p-10 w-[400px]'>
@@ -15,7 +37,7 @@ const MyOrdersDisplay = ({ order }) => {
                     <p>Price: {furniturePrice}</p>
                 </div>
                 <div>
-                    <Link to={`/dashbaord/payment/${_id}`}><button className="btn btn-primary w-full text-white font-bold mt-10">Pay Now</button></Link>
+                    <Link to={`/dashbaord/payment/${_id}`}><button onClick={() => handleStatusChanged(bookingItem)} className="btn btn-primary w-full text-white font-bold mt-10">Pay Now</button></Link>
                 </div>
             </div>
         </div>

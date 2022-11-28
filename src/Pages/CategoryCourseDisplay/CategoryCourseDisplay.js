@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Verified from '../../assets/icons/verified.png';
 import notverify from '../../assets/icons/not-verified.png';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
     //Distructure Property
@@ -15,6 +16,8 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
     //Import User 
     const { user } = useContext(AuthContext);
     const email = user?.email;
+
+    const navigate = useNavigate()
 
     const { data: buyerRole = [] } = useQuery({
         queryKey: ['buyer'],
@@ -71,6 +74,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success("Product Added to Wishlist")
+                    navigate('/dashbaord/myorders')
                 }
             })
     }
