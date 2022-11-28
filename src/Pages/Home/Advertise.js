@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import AdvertiseDisplay from './AdvertiseDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
 import AdvertiseModal from './AdvertiseModal';
+import axios from 'axios';
 
 const Advertise = () => {
     const { data = [], isLoading } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise')
-            const data = await res.json()
+            const data = axios.get('http://localhost:5000/advertise')
             return data;
         }
     })
