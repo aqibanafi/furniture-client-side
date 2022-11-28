@@ -57,7 +57,7 @@ const AdvertiseDisplay = ({ advertiseProduct, setAdvertiseProduct }) => {
     return (
         <div>
             <div className='flex flex-col justify-between shadow-xl p-10 rounded-lg bg-accent w-[400px]'>
-                <img className='w-80 mb-10 rounded-xl' src={picture} alt="" />
+                <img className='w-80 h-80 mb-10 rounded-xl' src={picture} alt="" />
                 <div className='flex justify-between items-center'>
                     <div>
                         <p className='text-2xl font-semibold text-primary mb-5'>{name}</p>

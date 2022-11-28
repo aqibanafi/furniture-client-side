@@ -78,3 +78,7 @@ git clone https://github.com/Porgramming-Hero-web-course/b6a11-service-review-se
    ```sh
    npm install react-swiper-js
    ```
+
+*Admin Access
+*Email: andrew.smith19@gmail.com
+*Password: andrew123456
