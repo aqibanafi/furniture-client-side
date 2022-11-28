@@ -108,6 +108,7 @@ const AddProduct = () => {
                             <option>Accessories</option>
                             <option>Chair</option>
                             <option>Dressing Table</option>
+                            <option>Table</option>
                         </select>
                     </div>
                     <div className='w-full mb-8'>
