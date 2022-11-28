@@ -6,8 +6,11 @@ import Categories from './Categories';
 import { RevolvingDot } from 'react-loader-spinner';
 import ReviewDisplay from './ReviewDisplay';
 import LetsTalk from './LetsTalk';
+import useTitle from '../../hooks/useTitle';
 
 const Home = () => {
+
+    useTitle("Home")
 
     const { data = [], isLoading } = useQuery({
         queryKey: ['advertise'],

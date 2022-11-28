@@ -2,8 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import AllProductsDisplay from '../AllProductsDisplay/AllProductsDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const AllProducts = () => {
+
+    useTitle("All Products")
+    
     const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['allProduct'],
         queryFn: async () => {

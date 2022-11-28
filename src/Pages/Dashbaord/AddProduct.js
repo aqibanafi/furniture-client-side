@@ -5,8 +5,11 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const AddProduct = () => {
+
+    useTitle("Add Product")
 
     //Import Auth
     const { user } = useContext(AuthContext);

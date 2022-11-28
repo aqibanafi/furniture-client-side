@@ -3,8 +3,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyOrdersDisplay from '../MyOrdersDisplay/MyOrdersDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const MyOrders = () => {
+
+    useTitle("My Orders")
 
     const { user } = useContext(AuthContext);
 

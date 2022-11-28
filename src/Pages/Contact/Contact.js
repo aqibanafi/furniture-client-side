@@ -1,8 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const Contact = () => {
+
+    useTitle("Contact")
 
     //Form handle Functions
     const { register, handleSubmit, formState: { errors } } = useForm();

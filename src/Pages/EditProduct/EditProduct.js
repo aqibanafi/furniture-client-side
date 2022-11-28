@@ -3,8 +3,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import EditProfileDisplay from '../EditProfileDisplay/EditProfileDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const EditProduct = () => {
+
+    useTitle("Edit Product")
 
     const { user } = useContext(AuthContext)
 

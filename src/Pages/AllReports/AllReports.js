@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const AllReports = () => {
+
+    useTitle("All Reports")
 
     const { data = [], isLoading } = useQuery({
         queryKey: ['reports'],

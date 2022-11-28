@@ -3,8 +3,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyProductsDisplay from '../MyProductsDisplay/MyProductsDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const MyProducts = () => {
+
+    useTitle("My Products")
 
     //Import Auth Context
     const { user } = useContext(AuthContext)

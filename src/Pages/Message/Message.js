@@ -1,6 +1,9 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Message = () => {
+
+    useTitle("Send Message")
     return (
         <div>
             <section className="p-6 dark:text-gray-100">

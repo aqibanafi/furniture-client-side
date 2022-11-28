@@ -4,8 +4,11 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import arrow from '../../assets/icons/review-arrow.png';
+import useTitle from '../../hooks/useTitle';
 
 const PostReview = () => {
+
+    useTitle("Review")
 
     const { user } = useContext(AuthContext)
     //Review Count State

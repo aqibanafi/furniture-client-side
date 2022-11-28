@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import reader from '../../assets/lottie/error.json'
 import Lottie from "lottie-react";
+import useTitle from '../../hooks/useTitle';
 
 const ErrorPage = () => {
+
+    useTitle("Error")
 
     return (
         <div className='mt-20 mb-10'>

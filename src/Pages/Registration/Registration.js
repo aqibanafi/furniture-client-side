@@ -8,8 +8,11 @@ import { format } from 'date-fns';
 import Lottie from "lottie-react";
 import reader from '../../assets/lottie/registration.json';
 import arrow from '../../assets/icons/registration-arroe.png';
+import useTitle from '../../hooks/useTitle';
 
 const Registration = () => {
+
+    useTitle("Registration")
 
     //Import Auth Context
     const { createUser, updateUserProfile, googleProviderLogin } = useContext(AuthContext)

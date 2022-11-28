@@ -6,8 +6,11 @@ import { FaFlag } from 'react-icons/fa';
 import Taka from '../../assets/icons/taka.png'
 import Verified from '../../assets/icons/verified.png';
 import notverify from '../../assets/icons/not-verified.png';
+import useTitle from '../../hooks/useTitle';
 
 const AdvertiseDisplay = ({ advertiseProduct, setAdvertiseProduct }) => {
+
+    useTitle("Advertise Products")
 
     const { user } = useContext(AuthContext)
 

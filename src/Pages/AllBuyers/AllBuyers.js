@@ -2,9 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import AllBuyersDisplay from '../AllBuyersDisplay/AllBuyersDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
+import useTitle from '../../hooks/useTitle';
 
 const AllBuyers = () => {
 
+    useTitle("All Buyers")
+    
     const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {

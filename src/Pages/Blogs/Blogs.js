@@ -3,8 +3,12 @@ import blogone from '../../assets/blogimage/React-State-Management.jpg'
 import blogtwo from '../../assets/blogimage/prototypal.png'
 import blogthree from '../../assets/blogimage/unite-test.jpg'
 import blogfour from '../../assets/blogimage/react-vue-angular.jpeg'
+import useTitle from '../../hooks/useTitle';
 
 const Blogs = () => {
+
+    useTitle("Blogs")
+    
     return (
         <div>
             <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">

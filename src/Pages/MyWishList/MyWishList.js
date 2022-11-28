@@ -4,8 +4,11 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import MyWishListDisplay from '../MyWishListDisplay/MyWishListDisplay';
 import { RevolvingDot } from 'react-loader-spinner'
 import MyWishModal from './MyWishModal';
+import useTitle from '../../hooks/useTitle';
 
 const MyWishList = () => {
+
+    useTitle("My Wishlist")
 
     const { user } = useContext(AuthContext)
 

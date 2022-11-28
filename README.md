@@ -1,10 +1,10 @@
 # The Personal
 
-A simple React App build with React & React Router [Live Website](https://assignment-11-project-421b1.web.app).
+A simple React App build with React & React Router [Live Website](https://the-personal-6a83a.web.app/).
 
 ## Live Link
 
-Hosted By Firebase -> [The Personal](https://assignment-11-project-421b1.web.app)
+Hosted By Firebase -> [The Personal](https://the-personal-6a83a.web.app/)
 
 # Website Overview
 
