@@ -7,8 +7,6 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Verified from '../../assets/icons/verified.png';
 import notverify from '../../assets/icons/not-verified.png';
 import { useQuery } from '@tanstack/react-query';
-import { RevolvingDot } from 'react-loader-spinner'
-
 
 const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
     //Distructure Property
@@ -18,6 +16,24 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
     const { user } = useContext(AuthContext);
     const email = user?.email;
 
+    const { data: buyerRole = [] } = useQuery({
+        queryKey: ['buyer'],
+        queryFn: async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/users/buyer/${user?.email}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('thePersonal')}`
+                    }
+                })
+                const data = await res.json()
+                return data;
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+    })
+    console.log(buyerRole)
     let count = 0;
     //Color of Wishlist
     const [wishlistColor, setWishListColor] = useState(' ')
@@ -65,7 +81,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
                 <div>
                     <p className='text-2xl font-semibold text-primary mb-5'>{name}</p>
                 </div>
-                <div className='flex items-center mb-3 gap-5'>
+                <div className={`flex items-center mb-3 gap-5 ${buyerRole.message === 'forbidden access' ? 'hidden' : 'block'}`}>
                     <button onClick={() => handleAddWishList(_id)} disabled={listButtonDisable} className='hover:text-red-500'><FaHeart className={`text-2xl ${wishlistColor}`} title='Add to Wishlist'></FaHeart></button>
                     <label htmlFor="flag-modal" className='hover:text-red-500 hover:cursor-pointer'><FaFlag title='Make Report' className='text-xl flex'></FaFlag></label>
                 </div>
@@ -76,7 +92,7 @@ const CategoryCourseDisplay = ({ courseDetails, setProductBooked }) => {
             <p className='mb-1'>Year of Uses: <span className='font-semibold'>{yearOfUse}</span></p>
             <p className='mb-1'>Posted: <span className='font-semibold'>{postTime}</span></p>
             <p className='flex gap-2'>Seller: <span className='font-semibold flex gap-3'>{sellersName} {courseDetails.verify === "Verified" ? <div className='flex gap-1 items-center'><img className='w-5 h-5' src={Verified} alt="" /> <p>Seller Verified</p></div> : <div className='flex gap-1 items-center'><img className='w-5 h-5' src={notverify} alt="" /> <p>Seller Not Verified</p></div>}</span></p>
-            <label onClick={() => setProductBooked(courseDetails)} htmlFor="booking-modal" className="btn btn-primary w-full text-white hover:bg-slate-600 mt-10">Book Now</label>
+            <label onClick={() => setProductBooked(courseDetails)} htmlFor="booking-modal" className={`btn btn-primary w-full text-white flex hover:bg-slate-600 mt-10 ${buyerRole.message === 'forbidden access' ? 'hidden' : 'block'}`}>Book Now</label>
         </div>
     );
 };
